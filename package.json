@@ -4,7 +4,7 @@
   "description": "Created for Educational Purposes.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./backend/app.js"
   },
   "author": "Ilya Shelestov",
   "license": "ISC",
