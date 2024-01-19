@@ -33,7 +33,7 @@
           action="/weather"
         >
           <input
-            class="mt-3 border blue-border rounded-pill border-2 text-center"
+            class="mt-2 border blue-border rounded-pill border-2 text-center"
             placeholder="Enter city..."
             type="text"
             name="city"
@@ -41,17 +41,37 @@
             required
           />
           <input
-            class="mt-3 border blue-border rounded-pill border-2 text-light fw-bold"
+            class="mt-2 border blue-border rounded-pill border-2 text-light fw-bold"
             type="submit"
             id="input-submit"
           />
         </form>
-        <div class="row mt-3 row-cols-1 row-cols-md-2 g-3">
+        <h1 class="text-center mt-2">-</h1>
+        <div class="row mt-2 row-cols-1 row-cols-md-2 g-3">
           <div class="col d-flex justify-content-center">
-            <div class="block blue-border rounded-4 border-2 border"></div>
+            <div class="block blue-border rounded-4 border-2 border d-flex p-4">
+              <div class="d-flex justify-content-center flex-column align-items-center w-40">
+                <img src="dassad">
+                <h3 class="mt-2">description</h3>
+                <h4>-27.2C</h4>
+                <div class="d-flex">
+                  <p class="me-3">lon:<span></span></p>
+                  <p>lat:<span></span></p>
+                </div>
+              </div>
+              <div class="w-60 d-flex flex-column justify-content-between mx-auto">
+                <h5>Feels like: <span class="fw-bold">-22.2C</span></h5>
+                <h5>Humidity: <span class="fw-bold">-22.2C</span></h5>
+                <h5>Pressure: <span class="fw-bold">-22.2C</span></h5>
+                <h5>Wind speed: <span class="fw-bold">-22.2C</span></h5>
+                <h5>Country code: <span class="fw-bold">-22.2C</span></h5>
+              </div>
+            </div>
           </div>
           <div class="col d-flex justify-content-center">
-            <div class="block blue-border rounded-4 border-2 border"></div>
+            <div class="block blue-border rounded-4 border-2 border">
+
+            </div>
           </div>
         </div>
       </div>
