@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/css/design.css" />
   </head>
   <body class="mb-5 pb-3">
-    <header class="border-bottom border-2">
+    <header class="border-bottom border-2 border-primary-subtle">
       <div class="container">
         <nav class="navbar navbar-expand">
           <h2>Weather App</h2>
@@ -26,10 +26,38 @@
     </header>
 
     <main>
-      <div class="container"></div>
+      <div class="container">
+        <form
+          class="d-flex flex-column align-items-center"
+          method="POST"
+          action="/weather"
+        >
+          <input
+            class="mt-3 border blue-border rounded-pill border-2 text-center"
+            placeholder="Enter city..."
+            type="text"
+            name="city"
+            id="input-text"
+            required
+          />
+          <input
+            class="mt-3 border blue-border rounded-pill border-2 text-light fw-bold"
+            type="submit"
+            id="input-submit"
+          />
+        </form>
+        <div class="row mt-3 row-cols-1 row-cols-md-2 g-3">
+          <div class="col d-flex justify-content-center">
+            <div class="block blue-border rounded-4 border-2 border"></div>
+          </div>
+          <div class="col d-flex justify-content-center">
+            <div class="block blue-border rounded-4 border-2 border"></div>
+          </div>
+        </div>
+      </div>
     </main>
 
-    <footer class="py-3 fixed-bottom border-top border-2">
+    <footer class="py-3 fixed-bottom border-top border-2 border-primary-subtle">
       <div class="container">
         <div class="d-flex justify-content-between">
           <p class="my-auto"><strong>Ilya Shelestov</strong>, SE-2207</p>
