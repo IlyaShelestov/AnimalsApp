@@ -10,7 +10,7 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" type="text/css" href="/css/design.css" />
+    <link rel="stylesheet" type="text/css" href="design.css" />
   </head>
   <body class="mb-5 pb-3">
     <header class="border-bottom border-2 border-primary-subtle">
@@ -46,25 +46,25 @@
             id="input-submit"
           />
         </form>
-        <h1 class="text-center mt-2">-</h1>
+        <h1 class="text-center mt-2" id="city">-</h1>
         <div class="row mt-2 row-cols-1 row-cols-md-2 g-3">
           <div class="col d-flex justify-content-center">
             <div class="block blue-border rounded-4 border-2 border d-flex p-4">
               <div class="d-flex justify-content-center flex-column align-items-center w-40">
                 <img src="dassad">
-                <h3 class="mt-2">description</h3>
-                <h4>-27.2C</h4>
+                <h3 class="mt-2" id="description">description</h3>
+                <h4 id="temperature">-27.2C</h4>
                 <div class="d-flex">
-                  <p class="me-3">lon:<span></span></p>
-                  <p>lat:<span></span></p>
+                  <p class="me-3">lon:<span id="lon"></span></p>
+                  <p>lat:<span id="lat"></span></p>
                 </div>
               </div>
               <div class="w-60 d-flex flex-column justify-content-between mx-auto">
-                <h5>Feels like: <span class="fw-bold">-22.2C</span></h5>
-                <h5>Humidity: <span class="fw-bold">-22.2C</span></h5>
-                <h5>Pressure: <span class="fw-bold">-22.2C</span></h5>
-                <h5>Wind speed: <span class="fw-bold">-22.2C</span></h5>
-                <h5>Country code: <span class="fw-bold">-22.2C</span></h5>
+                <h5>Feels like: <span class="fw-bold" id="feels">-22.2C</span></h5>
+                <h5>Humidity: <span class="fw-bold" id="humidity">-22.2C</span></h5>
+                <h5>Pressure: <span class="fw-bold" id="pressure">-22.2C</span></h5>
+                <h5>Wind speed: <span class="fw-bold" id="wind">-22.2C</span></h5>
+                <h5>Country code: <span class="fw-bold" id="country">-22.2C</span></h5>
               </div>
             </div>
           </div>
