@@ -1,7 +1,7 @@
 :root {
   --main-color: #eef5ff;
   --second-color: #7fc7d9;
-  --block-color: #aad7d9;
+  --block-color: #aad7d9c0;
   --border-color: #40a2d8;
 }
 
@@ -33,7 +33,7 @@ footer {
   width: 60%;
   min-width: 300px;
   height: 40px;
-  background-color: #aad7d9bd;
+  background-color: var(--block-color);
 }
 
 #input-submit {
