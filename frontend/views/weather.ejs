@@ -91,7 +91,14 @@
             </div>
           </div>
           <div class="col d-flex justify-content-center">
-            <div class="block blue-border rounded-4 border-2 border"></div>
+            <div
+              class="block blue-border rounded-4 border-2 border d-flex justify-content-center align-items-center p-4"
+            >
+              <iframe
+                class="w-100 h-100 blue-border rounded-1 border-2 border"
+                src="https://maps.google.com/maps?q=<%= weatherData.lat %>,<%= weatherData.lon %>&z=8&output=embed"
+              ></iframe>
+            </div>
           </div>
         </div>
       </div>
