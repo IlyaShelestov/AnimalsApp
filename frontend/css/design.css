@@ -24,7 +24,7 @@ footer {
 
 .block {
   width: 100%;
-  height: 46vh;
+  height: 270px;
   background-color: var(--block-color);
   opacity: 0.7;
 }
