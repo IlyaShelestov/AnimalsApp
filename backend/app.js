@@ -8,6 +8,10 @@ const weatherRoute = require("./routes/weather.js");
 const app = express();
 const port = config.server.port;
 
+app.set('view engine', 'ejs');
+app.set('views', 'frontend/views');
+
+app.use(express.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, "..", "frontend", "css")));
 
 app.use("/", homeRoute, weatherRoute);

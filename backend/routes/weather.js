@@ -3,9 +3,13 @@ const path = require("path");
 const router = express.Router();
 
 router.get("/weather", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "..", "..", "frontend", "pages", "weather.html")
-  );
+  res.render('weather', {city: 'Astana'});
 });
+
+router.post("/weather", (req, res) => {
+  console.log(req.body);
+  let city = req.body.city;
+  res.render('weather', {city: city});
+})
 
 module.exports = router;
