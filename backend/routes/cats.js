@@ -1,10 +1,12 @@
 const express = require("express");
+const catsAPIController = require("../controllers/catsAPIController.js");
 const router = express.Router();
 
 router.get("/cats", async (req, res) => {
   try {
-    // let weatherData = await weatherAPIController.getWeatherData("Astana");
-    res.render("cats");
+    let fact = await catsAPIController.getFactData();
+    let image = await catsAPIController.getImageData();
+    res.render("cats", { fact: fact, image: image });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching weather data");
@@ -13,9 +15,9 @@ router.get("/cats", async (req, res) => {
 
 router.post("/cats", async (req, res) => {
   try {
-    let city = req.body.city;
-    let weatherData = await weatherAPIController.getWeatherData(city);
-    res.render("weather", { weatherData, city: city });
+    let fact = await catsAPIController.getFactData();
+    let image = await catsAPIController.getImageData();
+    res.render("cats", { fact: fact, image: image });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching weather data");
@@ -23,4 +25,3 @@ router.post("/cats", async (req, res) => {
 });
 
 module.exports = router;
-
