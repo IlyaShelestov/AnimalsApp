@@ -7,6 +7,8 @@ const config = {
     apiUrl: "https://api.openweathermap.org/data/2.5/weather",
   },
   cats: {
+    apiKey:
+      "live_nFcPUp4DAv2oFcDqgx2WM5uQ1s2uccRJZEJq5zG8f7dHHAiCSrOywIwpXne3iJCg",
     imagesUrl: "https://api.thecatapi.com/v1/images/search",
     factsUrl: "https://meowfacts.herokuapp.com/",
   },
