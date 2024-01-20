@@ -16,7 +16,15 @@ router.post("/weather", async (req, res) => {
   try {
     let city = req.body.city;
     let weatherData = await weatherAPIController.getWeatherData(city);
-    res.render("weather", { weatherData, city: city });
+    if (weatherData.code == "404") {
+      weatherData = await weatherAPIController.getWeatherData("Astana");
+      res.render("weather", {
+        weatherData,
+        city: "Astana (An invalid city name has been entered)",
+      });
+    } else {
+      res.render("weather", { weatherData, city: city });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching weather data");

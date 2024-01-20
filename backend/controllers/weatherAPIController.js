@@ -10,6 +10,11 @@ function getWeatherData(city) {
     https.get(url, (res) => {
       res.on("data", (data) => {
         let APIdata = JSON.parse(data);
+        weatherData.code = APIdata.cod;
+        if (weatherData.code == "404") {
+          resolve(weatherData);
+          return;
+        }
         weatherData.lon = APIdata.coord.lon;
         weatherData.lat = APIdata.coord.lat;
         weatherData.main = APIdata.weather[0].main;
