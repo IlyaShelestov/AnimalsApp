@@ -25,8 +25,6 @@ function getImageData(breed) {
       url += "&has_breeds=1";
     }
 
-    console.log(url);
-
     https
       .get(url, (res) => {
         let rawData = "";
@@ -38,7 +36,6 @@ function getImageData(breed) {
         res.on("end", () => {
           try {
             const APIdata = JSON.parse(rawData);
-            console.log(APIdata);
             resolve(APIdata[0].url);
           } catch (e) {
             console.error(e.message);
