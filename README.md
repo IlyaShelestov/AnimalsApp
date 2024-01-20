@@ -38,7 +38,7 @@ npm start
 
 After completing these steps, you will land on the **Home Page**.
 
-To view the project, navigate to the *"Weather"/"Cats"* tabs, or visit **localhost:3000/weather**/**localhost:3000/cats**.
+To view the project, navigate to the *"Weather"/"Cats"* tabs, or visit **localhost:3000/weather** / **localhost:3000/cats**.
 
 ## Additional Information
 
