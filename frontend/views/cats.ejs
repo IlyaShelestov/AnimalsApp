@@ -18,39 +18,34 @@
         <nav class="navbar navbar-expand">
           <h2>APIs App</h2>
           <div class="navbar-nav ms-auto">
-            <a class="nav-link fs-4 me-4 active" href="/" aria-current="page"
-              >Home</a
-            >
+            <a class="nav-link fs-4 me-4" href="/" aria-current="page">Home</a>
             <a class="nav-link fs-4 me-4" href="/weather">Weather</a>
-            <a class="nav-link fs-4" href="/cats">Cats</a>
+            <a class="nav-link fs-4 active" href="/cats">Cats</a>
           </div>
         </nav>
       </div>
     </header>
 
-    <main>
+    <main class="mb-4 mb-lg-1 mb-md-1 mb-sm-1">
       <div class="container">
-        <div class="text-center">
-          <h1 class="display-3 fw-bold my-4">Home Page</h1>
-          <h3>Welcome!</h3>
-          <p>
-            This project serves as the second assignment for the
-            <strong>WEB Technologies 2</strong> course at
-            <strong>Astana IT University</strong>.
-          </p>
-          <p>
-            The application is designed with a clean and responsive layout,
-            incorporating <strong>Bootstrap</strong> for styling. Users can
-            input their weight, height, age, choose their gender, and select the
-            preferred units for weight and height. The BMI calculation logic is
-            implemented on the server side using <strong>Express.js</strong>,
-            ensuring accurate and efficient results.
-            <!--TODO: REMADE THIS -->
-          </p>
-          <h4 class="fw-normal">
-            To view the current project, navigate to the
-            <i>"Weather"</i> tab.
-          </h4>
+        <h1 class="text-center mt-2">Random Cat Facts and Photos Generator</h1>
+        <form
+          class="d-flex flex-column align-items-center"
+          method="POST"
+          action="/cats"
+        >
+          <input
+            class="mt-2 border blue-border rounded-pill border-2 text-light fw-bold"
+            type="submit"
+            id="input-submit"
+            value="Generate"
+          />
+        </form>
+        <div
+          class="block-large large border-2 blue-border rounded-2 border d-flex justify-content-center align-items-center flex-column"
+        >
+          <img src="" alt="Cat Photo" />
+          <h3 class="fw-bold"><%= catsData.fact %></h3>
         </div>
       </div>
     </main>
