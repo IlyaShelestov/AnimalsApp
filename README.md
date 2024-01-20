@@ -1,6 +1,14 @@
-# WeatherApp
+# WeatherApp (With cats)
 
 This project serves as the second assignment for the **WEB Technologies 2** course at **Astana IT University**.
+
+## Description
+
+This web project is designed using **Bootstrap** for a responsive and user-friendly layout. It comprises three main sections: the **"Home"** page providing an overview of the project, the **"Cats"** page featuring two APIs for generating random cat photos and facts, and the **"Weather"** page where users can retrieve weather information for any city using the OpenWeatherAPI.
+
+The application utilizes three APIs: **OpenWeatherMap** for weather data, **TheCatAPI** for random cat photos, and **meowfacts** for interesting cat facts. These APIs are integrated to enhance the user experience by providing dynamic content.
+
+The backend is built with **Express**, and **EJS** is used for templating, ensuring efficient server-side rendering and a seamless interaction for users.
 
 ## Dependencies
 
@@ -39,11 +47,3 @@ npm start
 After completing these steps, you will land on the **Home Page**.
 
 To view the project, navigate to the *"Weather"/"Cats"* tabs, or visit **localhost:3000/weather** / **localhost:3000/cats**.
-
-## Additional Information
-
-This web project is designed using **Bootstrap** for a responsive and user-friendly layout. It comprises three main sections: the **"Home"** page providing an overview of the project, the **"Cats"** page featuring two APIs for generating random cat photos and facts, and the **"Weather"** page where users can retrieve weather information for any city using the OpenWeatherAPI.
-
-The application utilizes three APIs: **OpenWeatherMap** for weather data, **TheCatAPI** for random cat photos, and **meowfacts** for interesting cat facts. These APIs are integrated to enhance the user experience by providing dynamic content.
-
-The backend is built with **Express**, and **EJS** is used for templating, ensuring efficient server-side rendering and a seamless interaction for users.
