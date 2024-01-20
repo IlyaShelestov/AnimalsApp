@@ -1,6 +1,7 @@
 const https = require("node:https");
 const config = require("../config.js");
 
+//FIRST API
 function getWeatherData(city) {
   return new Promise((resolve, reject) => {
     const url = `${config.openWeatherMap.apiUrl}?q=${city}&appid=${config.openWeatherMap.apiKey}&units=metric`;

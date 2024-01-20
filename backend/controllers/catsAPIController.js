@@ -1,6 +1,7 @@
 const https = require("node:https");
 const config = require("../config.js");
 
+//SECOND API
 function getFactData() {
   return new Promise((resolve, reject) => {
     const url = config.cats.factsUrl;
@@ -15,9 +16,14 @@ function getFactData() {
   });
 }
 
-function getImageData() {
+//THIRD API
+function getImageData(breed) {
   return new Promise((resolve, reject) => {
-    const url = config.cats.imagesUrl;
+    let url = config.cats.imagesUrl;
+
+    if (breed) {
+      url = url + "?has_breeds=1";
+    }
 
     https.get(url, (res) => {
       res.on("data", (data) => {
