@@ -31,7 +31,7 @@ async function insert(username, password, admin) {
     });
 
     await newUser.save();
-    
+
   } catch (error) {
     console.error("Error connecting to MongoDB", error);
   }
@@ -46,5 +46,4 @@ async function exists(username, password) {
   }
 }
 
-// add("mike", "123321", false).catch(console.dir);
 module.exports = { exists, insert };
