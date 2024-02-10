@@ -23,11 +23,11 @@ const weatherDataSchema = new mongoose.Schema(
   { collection: "weatherData" }
 );
 
-const Data = mongoose.model("Data", weatherDataSchema);
+const WeatherData = mongoose.model("WeatherData", weatherDataSchema);
 
 async function insert(weatherData, city, username) {
   try {
-    const data = await Data.find().sort({ id: -1 }).limit(1);
+    const data = await WeatherData.find().sort({ id: -1 }).limit(1);
 
     if (data.length > 0) {
       maxId = data[0].id;
@@ -35,7 +35,7 @@ async function insert(weatherData, city, username) {
       maxId = -1;
     }
 
-    const newData = new Data({
+    const newData = new WeatherData({
       id: maxId + 1,
       code: weatherData.code,
       username: username,
@@ -61,7 +61,7 @@ async function insert(weatherData, city, username) {
 
 async function getAllConverted() {
   try {
-    let docs = await Data.find({});
+    let docs = await WeatherData.find({});
 
     docs = docs.map((doc) => {
       let docObj = doc.toObject();
@@ -81,7 +81,7 @@ async function getAllConverted() {
 
 async function getLast() {
   try {
-    const datas = await Data.find().sort({ creation_date: -1 }).limit(1);
+    const datas = await WeatherData.find().sort({ creation_date: -1 }).limit(1);
 
     const data = datas[0];
 

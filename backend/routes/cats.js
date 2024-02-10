@@ -1,14 +1,17 @@
 const express = require("express");
 const catsAPIController = require("../controllers/catsAPIController.js");
+const catsDB = require("../database/cats.js");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
     let fact = await catsAPIController.getFactData();
     let image = await catsAPIController.getImageData(false);
+    await catsDB.insert(image, fact, false, req.cookies.username);
+    let catsData = await catsDB.getLast();
     res.render("cats", {
-      fact: fact,
-      image: image,
+      fact: catsData.fact,
+      image: catsData.image_url,
       checked: "",
       isLoggedIn: req.cookies.isLoggedIn,
       isAdmin: req.cookies.isAdmin,
@@ -25,9 +28,11 @@ router.post("/", async (req, res) => {
     let image = "";
     if ("breed" in req.body) {
       image = await catsAPIController.getImageData(true);
+      await catsDB.insert(image, fact, true, req.cookies.username);
+      let catsData = await catsDB.getLast();
       res.render("cats", {
-        fact: fact,
-        image: image,
+        fact: catsData.fact,
+        image: catsData.image_url,
         checked: "checked",
         isLoggedIn: req.cookies.isLoggedIn,
         isAdmin: req.cookies.isAdmin,
