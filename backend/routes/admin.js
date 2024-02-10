@@ -35,6 +35,7 @@ router.get("/cats", async (req, res) => {
 
 router.post("/", async (req, res) => {
   const { _method, id, username, password, admin } = req.body;
+
   switch (_method) {
     case "CREATE":
       await usersDB.insert(username, password, !!admin);

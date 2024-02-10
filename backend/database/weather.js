@@ -59,9 +59,14 @@ async function insert(weatherData, city, username) {
   }
 }
 
-async function getAllConverted() {
+async function getAllConverted(username) {
   try {
-    let docs = await WeatherData.find({});
+    let docs;
+    if (username) {
+      docs = await WeatherData.find({ username: username });
+    } else {
+      docs = await WeatherData.find({});
+    }
 
     docs = docs.map((doc) => {
       let docObj = doc.toObject();

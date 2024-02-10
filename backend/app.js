@@ -7,6 +7,7 @@ const db = require("./database/connection.js");
 const middleware = require("./middleware.js");
 
 const homeRoute = require("./routes/home.js");
+const profileRoute = require("./routes/profile.js");
 const weatherRoute = require("./routes/weather.js");
 const catsRoute = require("./routes/cats.js");
 const loginRoute = require("./routes/login.js");
@@ -30,6 +31,7 @@ app.use(cookieParser());
 
 app.use("/weather", middleware.checkAuth, weatherRoute);
 app.use("/cats", middleware.checkAuth, catsRoute);
+app.use("/profile", middleware.checkAuth, profileRoute);
 app.use("/admin", middleware.checkAuth, middleware.checkAdmin, adminRoute);
 app.use("/login", middleware.redirectIfLoggedIn, loginRoute);
 app.use("/signup", middleware.redirectIfLoggedIn, signupRoute);

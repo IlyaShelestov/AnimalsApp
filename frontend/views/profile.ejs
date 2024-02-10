@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('partials/head') %>
+  
+  <body class="mb-5 pb-3">
+
+    <%- include('partials/header') %>
+
+    <main>
+      <div class="container">
+        <div class="border d-flex justify-content-around align-items-center mt-3">
+          <h1><span class="fw-bold">Username: </span><%= username %></h1>
+          <a href="/logout"><button class="btn text-light fw-bold">Log out</button></a>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+          <form action="/profile" method="POST">
+            <input type="hidden" name="_type" value="weather">
+            <input class="btn text-light fw-bold" type ="submit" value="View your Weather history">
+          </form>
+          <form action="/profile" method="POST">
+            <input type="hidden" name="_type" value="cats">
+            <input class="btn text-light fw-bold" type ="submit" value="View your Cats history">
+          </form>
+          <form action="/profile" method="POST">
+            <input type="hidden" name="_type" value="something">
+            <input class="btn text-light fw-bold" type ="submit" value="View your ... history">
+          </form>
+        </div>
+        <% if (show == "weather") { %>
+            <h2 class="text-center mt-3">Weather History</h2>
+            <div>
+              <% data.forEach(function(doc) { %>
+                <div class="border bg-block rounded-4 border-2 blue-border p-1 my-1 row">
+                  <div class="col-12 d-flex justify-content-between">
+                    <h6><span class="fw-bold">country: </span><%= doc.country %>,</h6>
+                    <h6><span class="fw-bold">city: </span><%= doc.city %>,</h6>
+                    <h6><span class="fw-bold">lat: </span><%= doc.lat %>,</h6>
+                    <h6><span class="fw-bold">lon: </span><%= doc.lon %>,</h6>
+                    <h6><span class="fw-bold">main: </span><%= doc.main %>,</h6>
+                    <h6><span class="fw-bold">description: </span><%= doc.description %>,</h6>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between">
+                    <h6><span class="fw-bold">icon: </span><%= doc.icon %>,</h6>
+                    <h6><span class="fw-bold">temperature: </span><%= doc.temperature %>C,</h6>
+                    <h6><span class="fw-bold">feels: </span><%= doc.feels_like %>C,</h6>
+                    <h6><span class="fw-bold">pressure: </span><%= doc.pressure %>hPa,</h6>
+                    <h6><span class="fw-bold">humidity: </span><%= doc.humidity %>%,</h6>
+                    <h6><span class="fw-bold">wind: </span><%= doc.id %>m/s,</h6>
+                    <h6><span class="fw-bold">created: </span><%= doc.creation_date %>.</h6>
+                  </div>
+                </div>
+              <% }); %>
+            </div>
+        <% } else if (show == "cats") { %>
+          <h2 class="text-center mt-3">Cats History</h2>
+          <div>
+            <% data.forEach(function(doc) { %>
+              <div class="border bg-block rounded-4 border-2 blue-border p-1 my-1 row">
+                <div class="col-12 d-flex justify-content-between">
+                  <h6><span class="fw-bold">hasBreed: </span><%= doc.hasBreed %>,</h6>
+                  <h6><span class="fw-bold">created: </span><%= doc.creation_date %>,</h6>
+                </div>
+                  <h6><span class="fw-bold">image_url: </span><%= doc.image_url %>,</h6>
+                  <h6><span class="fw-bold">fact: </span><%= doc.fact %></h6>
+              </div>
+            <% }); %>
+          </div>
+        <% } else { %>
+          <h2 class="text-center mt-3">Press one of the buttons to display the history...</h2>
+        <% } %>
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

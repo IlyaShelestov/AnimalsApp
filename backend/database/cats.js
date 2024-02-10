@@ -39,9 +39,14 @@ async function insert(image_url, fact, hasBreed, username) {
   }
 }
 
-async function getAllConverted() {
+async function getAllConverted(username) {
   try {
-    let docs = await CatsData.find({});
+    let docs;
+    if (username) {
+      docs = await CatsData.find({ username: username });
+    } else {
+      docs = await CatsData.find({});
+    }
 
     docs = docs.map((doc) => {
       let docObj = doc.toObject();
