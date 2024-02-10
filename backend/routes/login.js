@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.render("login", {
+    deleted: false,
     wrong: false,
     isLoggedIn: req.cookies.isLoggedIn,
     isAdmin: req.cookies.isAdmin,
@@ -15,6 +16,15 @@ router.post("/", async (req, res) => {
   const password = req.body.password;
   const user = await usersDB.exists(username, password).catch(console.dir);
   if (user != false) {
+    if (user.deletion_date) {
+      res.render("login", {
+        deleted: true,
+        wrong: false,
+        isLoggedIn: req.cookies.isLoggedIn,
+        isAdmin: req.cookies.isAdmin,
+      });
+      return;
+    }
     const isAdmin = user.admin;
     const username = user.username;
     res.cookie("isLoggedIn", true, { httpOnly: true });
@@ -25,6 +35,7 @@ router.post("/", async (req, res) => {
     res.redirect("/");
   } else {
     res.render("login", {
+      deleted: false,
       wrong: true,
       isLoggedIn: req.cookies.isLoggedIn,
       isAdmin: req.cookies.isAdmin,

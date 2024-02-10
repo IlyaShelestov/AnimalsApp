@@ -1,6 +1,6 @@
 const express = require("express");
 const weatherAPIController = require("../controllers/weatherAPIController.js");
-const weatherDB = require("../database/weatherData.js");
+const weatherDB = require("../database/weather.js");
 const router = express.Router();
 
 router.get("/", async (req, res) => {

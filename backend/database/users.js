@@ -63,38 +63,44 @@ async function exists(username, password) {
 
 async function getAllConverted() {
   try {
-    const users = await User.aggregate([
-      {
-        $project: {
-          id: "$id",
-          username: "$username",
-          password: "$password",
-          admin: "$admin",
-          deletion_date: {
-            $dateToString: {
-              format: "%m/%d/%Y %H:%M:%S",
-              date: "$deletion_date",
-            },
-          },
-          creation_date: {
-            $dateToString: {
-              format: "%m/%d/%Y %H:%M:%S",
-              date: "$creation_date",
-            },
-          },
-          update_date: {
-            $dateToString: {
-              format: "%m/%d/%Y %H:%M:%S",
-              date: "$update_date",
-            },
-          },
-        },
-      },
-    ]);
+    let users = await User.find({});
+
+    users = users.map((user) => {
+      let userObj = user.toObject();
+
+      let creation_date = formatDate(userObj.creation_date);
+      let update_date = formatDate(userObj.update_date);
+
+      userObj.creation_date = creation_date;
+      userObj.update_date = update_date;
+
+      if (userObj.deletion_date) {
+        let deletion_date = formatDate(userObj.deletion_date);
+        userObj.deletion_date = deletion_date;
+      }
+
+      return userObj;
+    });
+
     return users;
   } catch (error) {
     console.log("Error connecting to MongoDB", error);
   }
+}
+
+function formatDate(dateString) {
+  const date = new Date(dateString);
+
+  const pad = (num) => (num < 10 ? `0${num}` : num);
+
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+  const seconds = pad(date.getSeconds());
+
+  return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
 }
 
 async function updateById(id, username, password, admin) {
