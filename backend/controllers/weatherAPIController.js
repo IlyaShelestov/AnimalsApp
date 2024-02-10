@@ -15,6 +15,7 @@ function getWeatherData(city) {
           resolve(weatherData);
           return;
         }
+
         weatherData.lon = APIdata.coord.lon;
         weatherData.lat = APIdata.coord.lat;
         weatherData.main = APIdata.weather[0].main;
