@@ -2,7 +2,7 @@ const express = require("express");
 const catsAPIController = require("../controllers/catsAPIController.js");
 const router = express.Router();
 
-router.get("/cats", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     let fact = await catsAPIController.getFactData();
     let image = await catsAPIController.getImageData();
@@ -13,7 +13,7 @@ router.get("/cats", async (req, res) => {
   }
 });
 
-router.post("/cats", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     let fact = await catsAPIController.getFactData();
     let image = "";

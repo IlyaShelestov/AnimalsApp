@@ -40,7 +40,11 @@ async function insert(username, password, admin) {
 async function exists(username, password) {
   try {
     const doesExist = await User.exists({username: username, password: password});
-    return doesExist;
+    if (doesExist) {
+      return User.findOne({username: username});
+    } else {
+      return false;
+    }
   } catch (error) {
     console.error("Error connecting to MongoDB", error);
   }

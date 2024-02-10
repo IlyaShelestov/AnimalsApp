@@ -1,20 +1,23 @@
 const express = require("express");
-const config = require("./config.js");
+const cookieParser = require("cookie-parser");
 const path = require("path");
+
+const config = require("./config.js");
+const db = require("./database/connection.js");
+const middleware = require("./middleware.js");
 
 const homeRoute = require("./routes/home.js");
 const weatherRoute = require("./routes/weather.js");
 const catsRoute = require("./routes/cats.js");
 const loginRoute = require("./routes/login.js");
+const logoutRoute = require("./routes/logout.js");
 const adminRoute = require("./routes/admin.js");
 const pageNotFoundRoute = require("./routes/pageNotFound.js");
-
-const { connectDB, closeDB } = require("./database/connection.js");
 
 const app = express();
 const port = config.server.port;
 
-connectDB();
+db.connectDB();
 
 app.set("view engine", "ejs");
 app.set("views", "frontend/views");
@@ -22,13 +25,20 @@ app.set("views", "frontend/views");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..", "frontend", "css")));
 
-app.use("/", homeRoute, weatherRoute, catsRoute, loginRoute, adminRoute, pageNotFoundRoute);
+app.use(cookieParser());
+
+app.use("/weather", middleware.checkAuth, weatherRoute);
+app.use("/cats", middleware.checkAuth, catsRoute);
+app.use("/admin", middleware.checkAuth, middleware.checkAdmin, adminRoute);
+app.use("/login", loginRoute);
+app.use("/logout", middleware.checkAuth, logoutRoute);
+app.use("/", homeRoute, pageNotFoundRoute);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
 process.on("SIGINT", () => {
-  closeDB();
+  db.closeDB();
   process.exit(0);
 });

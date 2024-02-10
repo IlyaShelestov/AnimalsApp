@@ -3,7 +3,7 @@ const weatherAPIController = require("../controllers/weatherAPIController.js");
 const weatherDB = require("../database/weatherData.js");
 const router = express.Router();
 
-router.get("/weather", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     let weatherData = await weatherAPIController.getWeatherData("Astana");
     await weatherDB.insert(weatherData, "Astana");
@@ -15,7 +15,7 @@ router.get("/weather", async (req, res) => {
   }
 });
 
-router.post("/weather", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     let city = req.body.city;
     let weatherData = await weatherAPIController.getWeatherData(city);
