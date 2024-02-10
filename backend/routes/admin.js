@@ -1,5 +1,6 @@
 const express = require("express");
 const usersDB = require("../database/users.js");
+const weatherDB = require("../database/weather.js");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -8,6 +9,16 @@ router.get("/", async (req, res) => {
     isLoggedIn: req.cookies.isLoggedIn,
     isAdmin: req.cookies.isAdmin,
     users,
+  });
+});
+
+router.get("/weather", async (req, res) => {
+  const weatherData = await weatherDB.getAllConverted();
+
+  res.render("admin_weather", {
+    isLoggedIn: req.cookies.isLoggedIn,
+    isAdmin: req.cookies.isAdmin,
+    weatherData,
   });
 });
 

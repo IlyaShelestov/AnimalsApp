@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { formatDate } = require("../helpers");
 
 const weatherDataSchema = new mongoose.Schema(
   {
@@ -31,7 +32,7 @@ async function insert(weatherData, city, username) {
     if (data.length > 0) {
       maxId = data[0].id;
     } else {
-      maxId = 0;
+      maxId = -1;
     }
 
     const newData = new Data({
@@ -58,6 +59,26 @@ async function insert(weatherData, city, username) {
   }
 }
 
+async function getAllConverted() {
+  try {
+    let docs = await Data.find({});
+
+    docs = docs.map((doc) => {
+      let docObj = doc.toObject();
+
+      let creation_date = formatDate(docObj.creation_date);
+
+      docObj.creation_date = creation_date;
+
+      return docObj;
+    });
+
+    return docs;
+  } catch (error) {
+    console.log("Error connecting to MongoDB", error);
+  }
+}
+
 async function getLast() {
   try {
     const datas = await Data.find().sort({ creation_date: -1 }).limit(1);
@@ -70,4 +91,4 @@ async function getLast() {
   }
 }
 
-module.exports = { insert, getLast };
+module.exports = { insert, getLast, getAllConverted };

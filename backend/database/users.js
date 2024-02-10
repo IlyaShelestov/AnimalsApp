@@ -22,6 +22,8 @@ async function insert(username, password, admin) {
 
     if (users.length > 0) {
       maxId = users[0].id;
+    } else {
+      maxId = -1;
     }
 
     const newUser = new User({
