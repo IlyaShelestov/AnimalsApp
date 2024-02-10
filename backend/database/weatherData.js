@@ -4,6 +4,7 @@ const weatherDataSchema = new mongoose.Schema(
   {
     id: { type: Number, required: true, unique: true },
     creation_date: { type: Date, default: Date.now },
+    username: { type: String, required: true },
     code: { type: Number, required: true },
     city: { type: String, required: true },
     country: { type: String, required: true },
@@ -23,7 +24,7 @@ const weatherDataSchema = new mongoose.Schema(
 
 const Data = mongoose.model("Data", weatherDataSchema);
 
-async function insert(weatherData, city) {
+async function insert(weatherData, city, username) {
   try {
     const data = await Data.find().sort({ id: -1 }).limit(1);
 
@@ -36,6 +37,7 @@ async function insert(weatherData, city) {
     const newData = new Data({
       id: maxId + 1,
       code: weatherData.code,
+      username: username,
       city: city,
       country: weatherData.country,
       lat: weatherData.lat,

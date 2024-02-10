@@ -10,6 +10,7 @@ const homeRoute = require("./routes/home.js");
 const weatherRoute = require("./routes/weather.js");
 const catsRoute = require("./routes/cats.js");
 const loginRoute = require("./routes/login.js");
+const signupRoute = require("./routes/signup.js");
 const logoutRoute = require("./routes/logout.js");
 const adminRoute = require("./routes/admin.js");
 const pageNotFoundRoute = require("./routes/pageNotFound.js");
@@ -31,6 +32,7 @@ app.use("/weather", middleware.checkAuth, weatherRoute);
 app.use("/cats", middleware.checkAuth, catsRoute);
 app.use("/admin", middleware.checkAuth, middleware.checkAdmin, adminRoute);
 app.use("/login", middleware.redirectIfLoggedIn, loginRoute);
+app.use("/signup", middleware.redirectIfLoggedIn, signupRoute);
 app.use("/logout", middleware.checkAuth, logoutRoute);
 app.use("/", homeRoute, pageNotFoundRoute);
 

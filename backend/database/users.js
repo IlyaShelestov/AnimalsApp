@@ -31,7 +31,6 @@ async function insert(username, password, admin) {
     });
 
     await newUser.save();
-
   } catch (error) {
     console.error("Error connecting to MongoDB", error);
   }
@@ -39,11 +38,23 @@ async function insert(username, password, admin) {
 
 async function exists(username, password) {
   try {
-    const doesExist = await User.exists({username: username, password: password});
-    if (doesExist) {
-      return User.findOne({username: username});
+    if (password) {
+      const doesExist = await User.exists({
+        username: username,
+        password: password,
+      });
+      if (doesExist) {
+        return User.findOne({ username: username });
+      } else {
+        return false;
+      }
     } else {
-      return false;
+      const doesExist = await User.exists({ username: username });
+      if (doesExist) {
+        return User.findOne({ username: username });
+      } else {
+        return false;
+      }
     }
   } catch (error) {
     console.error("Error connecting to MongoDB", error);

@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     let weatherData = await weatherAPIController.getWeatherData("Astana");
-    await weatherDB.insert(weatherData, "Astana");
+    await weatherDB.insert(weatherData, "Astana", req.cookies.username);
     weatherData = await weatherDB.getLast();
     res.render("weather", {
       weatherData,
@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
     if (weatherData.code == "404") {
       res.redirect("/weather");
     } else {
-      await weatherDB.insert(weatherData, city);
+      await weatherDB.insert(weatherData, city, req.cookies.username);
       weatherData = await weatherDB.getLast();
       res.render("weather", {
         weatherData,
