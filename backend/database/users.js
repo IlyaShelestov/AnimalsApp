@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { formatDate } = require("../helpers");
 
 const userSchema = new mongoose.Schema(
   {
@@ -86,21 +87,6 @@ async function getAllConverted() {
   } catch (error) {
     console.log("Error connecting to MongoDB", error);
   }
-}
-
-function formatDate(dateString) {
-  const date = new Date(dateString);
-
-  const pad = (num) => (num < 10 ? `0${num}` : num);
-
-  const year = date.getFullYear();
-  const month = pad(date.getMonth() + 1);
-  const day = pad(date.getDate());
-  const hours = pad(date.getHours());
-  const minutes = pad(date.getMinutes());
-  const seconds = pad(date.getSeconds());
-
-  return `${month}/${day}/${year} ${hours}:${minutes}:${seconds}`;
 }
 
 async function updateById(id, username, password, admin) {

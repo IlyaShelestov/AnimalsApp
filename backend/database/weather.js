@@ -70,39 +70,4 @@ async function getLast() {
   }
 }
 
-// async function getAllConverted() {
-//   try {
-//     const users = await User.aggregate([
-//       {
-//         $project: {
-//           id: "$wind",
-//           code: "$wind",
-//           username: "$wind",
-//           city: "$wind",
-//           country: "$wind",
-//           lat: "$wind",
-//           lon: "$wind",
-//           main: "$wind",
-//           description: "$wind",
-//           icon: "$wind",
-//           feels_like: "$wind",
-//           temperature: "$wind",
-//           pressure: "$wind",
-//           humidity: "$wind",
-//           wind: "$wind",
-//           creation_date: {
-//             $dateToString: {
-//               format: "%m/%d/%Y %H:%M:%S",
-//               date: "$creation_date",
-//             },
-//           },
-//         },
-//       },
-//     ]);
-//     return users;
-//   } catch (error) {
-//     console.log("Error connecting to MongoDB", error);
-//   }
-// }
-
 module.exports = { insert, getLast };
