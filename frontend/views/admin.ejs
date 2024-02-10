@@ -9,6 +9,85 @@
 
     <main>
       <div class="container">
+        <div class="row">
+          <div class="col-5 border">
+            <h1 class="text-center fw-bold">Users list</h1>
+            <div>
+              <% users.forEach(function(user) { %>
+                <% if (!user.deletion_date) { %>
+                <div class="border bg-block rounded-4 border-2 blue-border p-2 my-1">
+                <% } else { %>
+                <div class="border bg-deleted rounded-4 border-2 blue-border p-2 my-1">
+                <% } %>
+                  <div class="d-flex justify-content-between"><h6>Id:</h6><h6><%= user.id %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Username:</h6><h6><%= user.username %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Password:</h6><h6><%= user.password %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Admin:</h6><h6><%= user.admin %></h6></div>
+                  <div class="text-center"><h6>Time (GMT+0)</h6></div>
+                  <div class="d-flex justify-content-between"><h6>Created:</h6><h6><%= user.creation_date %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Last update:</h6><h6><%= user.update_date %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Deleted:</h6><h6><%= user.deletion_date %></h6></div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+          <div class="col-4 border">
+            <h1 class="text-center fw-bold">Actions</h1>
+            <div class="border p-1">
+              <h4 class="text-center fw-bold">Create</h4>
+              <form class="d-flex flex-column align-items-center" method="POST" action="/admin">
+                <input type="hidden" name="_method" value="CREATE">
+                <div class="d-flex flex-column align-items-end">
+                  <label>Username: <input class="mb-1" type="text" name="username" required></label>
+                  <label>Password: <input class="mb-1" type="text" name="password" required></label>
+                </div>
+                <label>Admin: <input class="mb-1" type="checkbox" name="admin" value="1" name="admin"></label>
+                <input type="submit" value="Create" class="btn text-light fw-bold w-75">
+              </form>
+            </div>
+            <div class="border p-1">
+              <h4 class="text-center fw-bold">Update</h4>
+              <form class="d-flex flex-column align-items-center" method="POST" action="/admin">
+                <input type="hidden" name="_method" value="UPDATE">
+                <div class="d-flex flex-column align-items-end">
+                  <label>Id: <input class="mb-1" type="number" name="id" min="0" required></label>
+                  <label>New Username: <input class="mb-1" type="text" name="username"></label>
+                  <label>New Password: <input class="mb-1" type="text" name="password"></label>
+                </div>
+                <label>Admin: <input class="mb-1" type="checkbox" name="admin" value="1" name="admin"></label>
+                <input type="submit" value="Update" class="btn text-light fw-bold w-75">
+              </form>
+            </div>
+            <div class="border p-1">
+              <h4 class="text-center fw-bold">Delete</h4>
+              <form class="d-flex flex-column align-items-center" method="POST" action="/admin">
+                <input type="hidden" name="_method" value="DELETE">
+                <div class="d-flex flex-column align-items-end">
+                  <label>Id: <input class="mb-1" type="number" name="id" min="0" required></label>
+                </div>
+                <input type="submit" value="Delete" class="btn text-light fw-bold w-75">
+              </form>
+            </div>
+            <div class="border p-1">
+              <h4 class="text-center fw-bold">Restore</h4>
+              <form class="d-flex flex-column align-items-center" method="POST" action="/admin">
+                <input type="hidden" name="_method" value="RESTORE">
+                <div class="d-flex flex-column align-items-end">
+                  <label>Id: <input class="mb-1" type="number" name="id" min="0" required></label>
+                </div>
+                <input type="submit" value="Restore" class="btn text-light fw-bold w-75">
+              </form>
+            </div>
+          </div>
+          <div class="col-3 border">
+            <h1 class="text-center fw-bold">History</h1>
+            <div class="d-flex flex-column">
+              <a href="/admin/weather"><button class="btn text-light fw-bold w-100">Show Weather requests</button></a>
+              <a href="/admin/cats"><button class="mt-5 btn text-light fw-bold w-100">Show Cats requests</button></a>
+              <a href="/admin"><button class="mt-5 btn text-light fw-bold w-100">Show ... requests</button></a>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
 

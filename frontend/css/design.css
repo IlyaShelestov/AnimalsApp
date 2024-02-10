@@ -3,6 +3,7 @@
   --second-color: #7fc7d9;
   --block-color: #aad7d9c0;
   --border-color: #40a2d8;
+  --block-color-deleted: #ff8080;
 }
 
 *,
@@ -48,6 +49,19 @@ footer {
   transition: 0.2s;
 }
 
+.btn {
+  background-color: var(--second-color);
+  border-radius: 20px;
+  border-width: 2px;
+  border-color: var(--border-color) !important;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background-color: var(--block-color);
+  color: var(--border-color) !important;
+}
+
 #input-submit:hover {
   background-color: var(--block-color);
   color: var(--border-color) !important;
@@ -55,4 +69,12 @@ footer {
 
 .blue-border {
   border-color: var(--border-color) !important;
+}
+
+.bg-block {
+  background-color: var(--block-color);
+}
+
+.bg-deleted {
+  background-color: var(--block-color-deleted);
 }

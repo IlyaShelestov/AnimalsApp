@@ -61,4 +61,81 @@ async function exists(username, password) {
   }
 }
 
-module.exports = { exists, insert };
+async function getAllConverted() {
+  try {
+    const users = await User.aggregate([
+      {
+        $project: {
+          id: "$id",
+          username: "$username",
+          password: "$password",
+          admin: "$admin",
+          deletion_date: {
+            $dateToString: {
+              format: "%m/%d/%Y %H:%M:%S",
+              date: "$deletion_date",
+            },
+          },
+          creation_date: {
+            $dateToString: {
+              format: "%m/%d/%Y %H:%M:%S",
+              date: "$creation_date",
+            },
+          },
+          update_date: {
+            $dateToString: {
+              format: "%m/%d/%Y %H:%M:%S",
+              date: "$update_date",
+            },
+          },
+        },
+      },
+    ]);
+    return users;
+  } catch (error) {
+    console.log("Error connecting to MongoDB", error);
+  }
+}
+
+async function updateById(id, username, password, admin) {
+  try {
+    const updateData = {};
+    if (username) updateData.username = username;
+    if (password) updateData.password = password;
+    if (admin !== undefined) updateData.admin = admin;
+    updateData.update_date = new Date();
+
+    await User.findOneAndUpdate({ id: id }, updateData, { new: true });
+  } catch (error) {
+    console.error("Error updating user in MongoDB", error);
+  }
+}
+
+async function deleteById(id) {
+  try {
+    await User.findOneAndUpdate({ id: id }, { deletion_date: new Date() });
+  } catch (error) {
+    console.error("Error deleting user in MongoDB", error);
+  }
+}
+
+async function restoreById(id) {
+  try {
+    await User.findOneAndUpdate(
+      { id: id },
+      { $unset: { deletion_date: 1 } },
+      { new: true }
+    );
+  } catch (error) {
+    console.error("Error deleting user in MongoDB", error);
+  }
+}
+
+module.exports = {
+  exists,
+  insert,
+  getAllConverted,
+  updateById,
+  deleteById,
+  restoreById,
+};
