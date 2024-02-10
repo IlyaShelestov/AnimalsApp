@@ -7,12 +7,19 @@ function checkAuth(req, res, next) {
 }
 
 function checkAdmin(req, res, next) {
-  console.log(req.cookies.isAdmin);
-  if (req.cookies.isAdmin === "true") {
+  if (req.cookies.isAdmin) {
     next();
   } else {
     res.status(403).send("Access denied. Admins only.");
   }
 }
 
-module.exports = { checkAdmin, checkAuth };
+function redirectIfLoggedIn(req, res, next) {
+  if (req.cookies.isLoggedIn) {
+    res.redirect('/');
+  } else {
+    next();
+  }
+}
+
+module.exports = { checkAdmin, checkAuth, redirectIfLoggedIn };

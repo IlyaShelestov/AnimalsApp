@@ -3,7 +3,11 @@ const usersDB = require("../database/users.js");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("login", { wrong: false });
+  res.render("login", {
+    wrong: false,
+    isLoggedIn: req.cookies.isLoggedIn,
+    isAdmin: req.cookies.isAdmin,
+  });
 });
 
 router.post("/", async (req, res) => {
@@ -11,11 +15,18 @@ router.post("/", async (req, res) => {
   const password = req.body.password;
   const user = await usersDB.exists(username, password).catch(console.dir);
   if (user != false) {
+    isAdmin = user.admin;
     res.cookie("isLoggedIn", true, { httpOnly: true });
-    res.cookie("isAdmin", user.admin, { httpOnly: true });
+    if (isAdmin) {
+      res.cookie("isAdmin", true, { httpOnly: true });
+    }
     res.redirect("/");
   } else {
-    res.render("login", { wrong: true });
+    res.render("login", {
+      wrong: true,
+      isLoggedIn: req.cookies.isLoggedIn,
+      isAdmin: req.cookies.isAdmin,
+    });
   }
 });
 

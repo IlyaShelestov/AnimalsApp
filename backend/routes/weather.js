@@ -8,7 +8,12 @@ router.get("/", async (req, res) => {
     let weatherData = await weatherAPIController.getWeatherData("Astana");
     await weatherDB.insert(weatherData, "Astana");
     weatherData = await weatherDB.getLast();
-    res.render("weather", { weatherData, city: "Astana" });
+    res.render("weather", {
+      weatherData,
+      city: "Astana",
+      isLoggedIn: req.cookies.isLoggedIn,
+      isAdmin: req.cookies.isAdmin,
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Error fetching weather data");
@@ -20,17 +25,16 @@ router.post("/", async (req, res) => {
     let city = req.body.city;
     let weatherData = await weatherAPIController.getWeatherData(city);
     if (weatherData.code == "404") {
-      weatherData = await weatherAPIController.getWeatherData("Astana");
-      await weatherDB.insert(weatherData, "Astana");
-      weatherData = await weatherDB.getLast();
-      res.render("weather", {
-        weatherData,
-        city: "Astana (An invalid city name has been entered)",
-      });
+      res.redirect("/weather");
     } else {
       await weatherDB.insert(weatherData, city);
       weatherData = await weatherDB.getLast();
-      res.render("weather", { weatherData, city: city });
+      res.render("weather", {
+        weatherData,
+        city: city,
+        isLoggedIn: req.cookies.isLoggedIn,
+        isAdmin: req.cookies.isAdmin,
+      });
     }
   } catch (error) {
     console.error(error);

@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use("/weather", middleware.checkAuth, weatherRoute);
 app.use("/cats", middleware.checkAuth, catsRoute);
 app.use("/admin", middleware.checkAuth, middleware.checkAdmin, adminRoute);
-app.use("/login", loginRoute);
+app.use("/login", middleware.redirectIfLoggedIn, loginRoute);
 app.use("/logout", middleware.checkAuth, logoutRoute);
 app.use("/", homeRoute, pageNotFoundRoute);
 
