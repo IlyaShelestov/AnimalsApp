@@ -1,6 +1,7 @@
 const express = require("express");
 const usersDB = require("../database/users.js");
 const weatherDB = require("../database/weather.js");
+const catsDB = require("../database/cats.js");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -19,6 +20,16 @@ router.get("/weather", async (req, res) => {
     isLoggedIn: req.cookies.isLoggedIn,
     isAdmin: req.cookies.isAdmin,
     weatherData,
+  });
+});
+
+router.get("/cats", async (req, res) => {
+  const catsData = await catsDB.getAllConverted();
+
+  res.render("admin_cats", {
+    isLoggedIn: req.cookies.isLoggedIn,
+    isAdmin: req.cookies.isAdmin,
+    catsData,
   });
 });
 
