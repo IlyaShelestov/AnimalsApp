@@ -77,10 +77,10 @@ To view the project, navigate to the *"Login"* tab, or visit **localhost:3000/lo
 
 ### You can log in as an **admin** with the following credentials:
 
-### **Username**: ilya
-### **Password**: admin
+**Username**: ilya
+**Password**: admin
 
 ### Or you can log in as a **regular user** with the following credentials:
 
-### **Username**: mike
-### **Password**: 123321
+**Username**: mike
+**Password**: 123321
