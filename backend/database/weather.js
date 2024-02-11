@@ -63,9 +63,11 @@ async function getAllConverted(username) {
   try {
     let docs;
     if (username) {
-      docs = await WeatherData.find({ username: username });
+      docs = await WeatherData.find({ username: username }).sort({
+        creation_date: -1,
+      });
     } else {
-      docs = await WeatherData.find({});
+      docs = await WeatherData.find({}).sort({ creation_date: -1 });
     }
 
     docs = docs.map((doc) => {

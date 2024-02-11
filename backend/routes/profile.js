@@ -1,6 +1,7 @@
 const express = require("express");
 const weatherDB = require("../database/weather.js");
 const catsDB = require("../database/cats.js");
+const dictionaryDB = require("../database/dictionary.js");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -22,10 +23,13 @@ router.post("/", async (req, res) => {
     case "cats":
       data = await catsDB.getAllConverted(req.cookies.username);
       break;
+    case "dictionary":
+      data = await dictionaryDB.getAllConverted(req.cookies.username);
+      break;
     default:
       break;
   }
-
+  
   res.render("profile", {
     isLoggedIn: req.cookies.isLoggedIn,
     isAdmin: req.cookies.isAdmin,

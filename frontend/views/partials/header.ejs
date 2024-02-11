@@ -3,17 +3,18 @@
     <nav class="navbar navbar-expand">
       <h2>APIs App</h2>
       <div class="navbar-nav ms-auto">
-        <a class="nav-link fs-5 me-4" href="/" aria-current="page">Home</a>
+        <a class="nav-link fs-5 me-3" href="/" aria-current="page">Home</a>
         <% if (isLoggedIn) { %>
-          <a class="nav-link fs-5 me-4" href="/weather">Weather</a>
-          <a class="nav-link fs-5 me-4" href="/cats">Cats</a>
+          <a class="nav-link fs-5 me-3" href="/weather">Weather</a>
+          <a class="nav-link fs-5 me-3" href="/cats">Cats</a>
+          <a class="nav-link fs-5 me-3" href="/dictionary">Dictionary</a>
           <% if (isAdmin) { %>
-            <a class="nav-link fs-5 me-4" href="/admin">Admin</a>
+            <a class="nav-link fs-5 me-3" href="/admin"><i>Admin</i></a>
           <% } %>
-          <a class="nav-link fs-5 me-4" href="/profile">Profile</a>
+          <a class="nav-link fs-5 me-3" href="/profile">Profile</a>
         <% } %>
         <% if (!isLoggedIn) { %>
-          <a class="nav-link fs-5 me-4" href="/login">Log In</a>
+          <a class="nav-link fs-5 me-3" href="/login">Log In</a>
         <% } %>
       </div>
     </nav>

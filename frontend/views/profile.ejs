@@ -23,8 +23,8 @@
             <input class="btn text-light fw-bold" type ="submit" value="View your Cats history">
           </form>
           <form action="/profile" method="POST">
-            <input type="hidden" name="_type" value="something">
-            <input class="btn text-light fw-bold" type ="submit" value="View your ... history">
+            <input type="hidden" name="_type" value="dictionary">
+            <input class="btn text-light fw-bold" type ="submit" value="View your Dictionary history">
           </form>
         </div>
         <% if (show == "weather") { %>
@@ -63,6 +63,21 @@
                 </div>
                   <h6><span class="fw-bold">image_url: </span><%= doc.image_url %>,</h6>
                   <h6><span class="fw-bold">fact: </span><%= doc.fact %></h6>
+              </div>
+            <% }); %>
+          </div>
+        <% } else if (show == "dictionary") { %>
+          <h2 class="text-center mt-3">Dictionary History</h2>
+          <div>
+            <% data.forEach(function(doc) { %>
+              <div class="border bg-block rounded-4 border-2 blue-border p-1 my-1 row">
+                <div class="col-12 d-flex justify-content-between">
+                  <h6><span class="fw-bold">word: </span><%= doc.word %>,</h6>
+                  <% if (doc.phonetic) { %><h6><span class="fw-bold">phonetic: </span><%= doc.phonetic %>,</h6> <% } %>
+                  <h6><span class="fw-bold">part of Speech: </span><%= doc.partOfSpeech %>,</h6>
+                  <h6><span class="fw-bold">created: </span><%= doc.creation_date %>,</h6>
+                </div>
+                  <h6><span class="fw-bold">definition: </span><%= doc.definition %></h6>
               </div>
             <% }); %>
           </div>

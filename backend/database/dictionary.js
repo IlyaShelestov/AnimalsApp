@@ -1,23 +1,25 @@
 const mongoose = require("mongoose");
 const { formatDate } = require("../helpers");
 
-const catsDataSchema = new mongoose.Schema(
+const dictionaryDataSchema = new mongoose.Schema(
   {
     id: { type: Number, required: true, unique: true },
     creation_date: { type: Date, default: Date.now },
     username: { type: String, required: true },
-    image_url: { type: String, required: true },
-    fact: { type: String, required: true },
-    hasBreed: { type: Boolean, default: false, required: true },
+    code: { type: Number, required: true },
+    word: { type: String, required: true },
+    phonetic: { type: String },
+    partOfSpeech: { type: String, required: true },
+    definition: { type: String, required: true },
   },
-  { collection: "catsData" }
+  { collection: "dictionaryData" }
 );
 
-const CatsData = mongoose.model("CatsData", catsDataSchema);
+const DictionaryData = mongoose.model("DictionaryData", dictionaryDataSchema);
 
-async function insert(image_url, fact, hasBreed, username) {
+async function insert(wordData, username) {
   try {
-    const data = await CatsData.find().sort({ id: -1 }).limit(1);
+    const data = await DictionaryData.find().sort({ id: -1 }).limit(1);
 
     if (data.length > 0) {
       maxId = data[0].id;
@@ -25,12 +27,14 @@ async function insert(image_url, fact, hasBreed, username) {
       maxId = -1;
     }
 
-    const newData = new CatsData({
+    const newData = new DictionaryData({
       id: maxId + 1,
       username: username,
-      image_url: image_url,
-      fact: fact,
-      hasBreed: hasBreed,
+      code: wordData.code,
+      word: wordData.word,
+      phonetic: wordData.phonetic,
+      partOfSpeech: wordData.partOfSpeech,
+      definition: wordData.definition,
     });
 
     await newData.save();
@@ -43,11 +47,11 @@ async function getAllConverted(username) {
   try {
     let docs;
     if (username) {
-      docs = await CatsData.find({ username: username }).sort({
+      docs = await DictionaryData.find({ username: username }).sort({
         creation_date: -1,
       });
     } else {
-      docs = await CatsData.find({}).sort({ creation_date: -1 });
+      docs = await DictionaryData.find({}).sort({ creation_date: -1 });
     }
 
     docs = docs.map((doc) => {
@@ -68,7 +72,9 @@ async function getAllConverted(username) {
 
 async function getLast() {
   try {
-    const datas = await CatsData.find().sort({ creation_date: -1 }).limit(1);
+    const datas = await DictionaryData.find()
+      .sort({ creation_date: -1 })
+      .limit(1);
 
     const data = datas[0];
 

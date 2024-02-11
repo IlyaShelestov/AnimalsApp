@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error fetching weather data");
+    res.status(500).send("Error fetching cats data");
   }
 });
 
@@ -42,7 +42,7 @@ router.post("/", async (req, res) => {
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send("Error fetching weather data");
+    res.status(500).send("Error fetching cats data");
   }
 });
 

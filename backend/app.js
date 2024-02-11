@@ -10,6 +10,7 @@ const homeRoute = require("./routes/home.js");
 const profileRoute = require("./routes/profile.js");
 const weatherRoute = require("./routes/weather.js");
 const catsRoute = require("./routes/cats.js");
+const dictionaryRoute = require("./routes/dictionary.js");
 const loginRoute = require("./routes/login.js");
 const signupRoute = require("./routes/signup.js");
 const logoutRoute = require("./routes/logout.js");
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, "..", "frontend", "css")));
 
 app.use(cookieParser());
 
+app.use("/dictionary", middleware.checkAuth, dictionaryRoute);
 app.use("/weather", middleware.checkAuth, weatherRoute);
 app.use("/cats", middleware.checkAuth, catsRoute);
 app.use("/profile", middleware.checkAuth, profileRoute);
