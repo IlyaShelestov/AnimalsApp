@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <%- include('partials/head') %>
-  
-  <body class="mb-5 pb-3">
 
+  <body class="mb-5 pb-3">
     <%- include('partials/header') %>
 
     <main>
       <div class="container">
         <div class="text-center">
-          <h1 class="display-3 fw-bold my-4">Home Page</h1>
-          <h3>Welcome!</h3>
+          <h1 class="display-3 fw-bold mb-1">Home Page</h1>
           <p>
-            This project serves as the second assignment for the
+            This project serves as the third assignment for the
             <strong>WEB Technologies 2</strong> course at
             <strong>Astana IT University</strong>.
           </p>
           <p>
             This web project is designed using <strong>Bootstrap</strong> for a
-            responsive and user-friendly layout. It comprises three main
-            sections: the <strong>"Home"</strong> page providing an overview of
-            the project, the <strong>"Cats"</strong> page featuring two APIs for
-            generating random cat photos and facts, and the
-            <strong>"Weather</strong>" page where users can retrieve weather
-            information for any city using the OpenWeatherAPI.
+            responsive and user-friendly layout. It comprises
+            <strong>six</strong> main sections: the <strong>"Home"</strong> page
+            providing an overview of the project; the
+            <strong>"Cats"</strong> page featuring two APIs for generating
+            random cat photos and facts; the <strong>"Weather"</strong> page
+            where users can retrieve weather information for any city using the
+            OpenWeatherAPI; the <strong>"Dictionary"</strong> page for looking
+            up word definitions; and the <strong>"Profile"</strong> page, which
+            displays the user's search history across all APIs. Additionally,
+            after successful <strong>login</strong> or <strong>sign-up</strong>,
+            users gain access to these functionalities, with an extra
+            <strong>"Admin"</strong> tab available to users logged in as admins,
+            offering insights into all users' account information, actions like
+            <em>Delete</em>, <em>Restore</em>, <em>Update</em>, <em>Insert</em>,
+            and histories of all users' searches across the APIs.
           </p>
           <p>
-            The application utilizes three APIs:
+            The application utilizes four APIs:
             <strong>OpenWeatherMap</strong> for weather data,
-            <strong>TheCatAPI</strong> for random cat photos, and
-            <strong>meowfacts</strong> for interesting cat facts. These APIs are
-            integrated to enhance the user experience by providing dynamic
-            content.
+            <strong>TheCatAPI</strong> for random cat photos,
+            <strong>meowfacts</strong> for interesting cat facts, and
+            <strong>Free Dictionary API</strong> for retrieving word
+            definitions. These APIs are integrated to enhance the user
+            experience by providing dynamic content.
           </p>
           <p>
             The backend is built with <strong>Express</strong>, and
             <strong>EJS</strong> is used for templating, ensuring efficient
             server-side rendering and a seamless interaction for users.
+            <strong>Mongoose</strong> is integrated for easy data management
+            with <strong>MongoDB</strong>, streamlining API development and data
+            saving processes. For user session management,
+            <strong>Cookie-Parser</strong> is employed to handle cookies
+            efficiently, essential for maintaining logged-in user information.
           </p>
           <h4 class="fw-normal">
-            To view the current project, navigate to the
-            <i>"Weather"/"Cats"</i> tab.
+            To view the project, navigate to the <em>"Login"</em> tab, or visit
+            <strong>localhost:3000/login</strong> /
+            <strong>localhost:3000/signup</strong>.
           </h4>
+          <p class="fs-6">Credentials: 1) for admin: Username: ilya, Password: admin; 2) for regular user: Username: mike, Password: 123321;</p>
         </div>
       </div>
     </main>
