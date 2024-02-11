@@ -76,8 +76,11 @@ After completing these steps, you will land on the **Home Page**.
 To view the project, navigate to the *"Login"* tab, or visit **localhost:3000/login** / **localhost:3000/signup**.
 
 You can log in as an **admin** with the following credentials:
+
 **Username**: ilya
 **Password**: admin
+
 Or you can log in as a **regular user** with the following credentials:
+
 **Username**: mike
 **Password**: 123321
