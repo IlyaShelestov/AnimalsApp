@@ -66,7 +66,7 @@ async function exists(username, password) {
       }
     }
   } catch (error) {
-    console.error("Error connecting to MongoDB", error);
+    console.error("Error inserting user in MongoDB", error);
   }
 }
 
@@ -93,7 +93,7 @@ async function getAllConverted() {
 
     return users;
   } catch (error) {
-    console.log("Error connecting to MongoDB", error);
+    console.log("Error retrieving users in MongoDB", error);
   }
 }
 
@@ -127,7 +127,7 @@ async function restoreById(id) {
       { new: true }
     );
   } catch (error) {
-    console.error("Error deleting user in MongoDB", error);
+    console.error("Error restoring user in MongoDB", error);
   }
 }
 

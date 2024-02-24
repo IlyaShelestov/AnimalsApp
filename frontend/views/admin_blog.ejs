@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include('partials/subhead') %>
+  
+  <body class="mb-5 pb-3">
+
+    <%- include('partials/header') %>
+
+    <main>
+      <div class="container">
+        <div class="row">
+          <div class="col-6 border">
+            <h1 class="text-center fw-bold">Items list</h1>
+            <div>
+              <% items.forEach(function(item) { %>
+                <% if (!item.deletion_date) { %>
+                <div class="border bg-block rounded-4 border-2 blue-border p-2 my-1">
+                <% } else { %>
+                <div class="border bg-deleted rounded-4 border-2 blue-border p-2 my-1">
+                <% } %>
+                  <div class="d-flex justify-content-between"><h6>Id:</h6><h6><%= item.id %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Title(RU):</h6><h6><%= item.title_ru %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Title(EN):</h6><h6><%= item.title_en %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Description(RU):</h6><h6><%= item.description_ru %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Description(EN):</h6><h6><%= item.description_en %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>ImageURL_1:</h6><h6><%= item.image_1 %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>ImageURL_2:</h6><h6><%= item.image_2 %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>ImageURL_3:</h6><h6><%= item.image_3 %></h6></div>
+                  <div class="text-center"><h6>Time (GMT+6)</h6></div>
+                  <div class="d-flex justify-content-between"><h6>Created:</h6><h6><%= item.creation_date %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Last update:</h6><h6><%= item.update_date %></h6></div>
+                  <div class="d-flex justify-content-between"><h6>Deleted:</h6><h6><%= item.deletion_date %></h6></div>
+                </div>
+              <% }); %>
+            </div>
+          </div>
+          <div class="col-6 border">
+            <h1 class="text-center fw-bold">Actions</h1>
+            <div class="border p-1">
+              <h4 class="text-center fw-bold">Create</h4>
+              <form class="d-flex flex-column align-items-center" method="POST" action="/admin/blog">
+                <input type="hidden" name="_method" value="CREATE">
+                <div class="d-flex flex-column align-items-end">
+                  <label>Title(RU): <input class="mb-1" type="text" name="title_ru" required></label>
+                  <label>Title(EN): <input class="mb-1" type="text" name="title_en" required></label>
+                  <label>Description(RU): <input class="mb-1" type="text" name="description_ru" required></label>
+                  <label>Description(EN): <input class="mb-1" type="text" name="description_en" required></label>
+                  <label>Image URL(1): <input class="mb-1" type="text" name="image_1" required></label>
+                  <label>Image URL(2): <input class="mb-1" type="text" name="image_2" required></label>
+                  <label>Image URL(3): <input class="mb-1" type="text" name="image_3" required></label>
+                </div>
+                <input type="submit" value="Create" class="btn text-light fw-bold w-75">
+              </form>
+            </div>
+            <div class="border p-1">
+              <h4 class="text-center fw-bold">Update</h4>
+              <form class="d-flex flex-column align-items-center" method="POST" action="/admin/blog">
+                <input type="hidden" name="_method" value="UPDATE">
+                <div class="d-flex flex-column align-items-end">
+                  <label>Id: <input class="mb-1" type="number" name="id" min="0" required></label>
+                  <label>Title(RU): <input class="mb-1" type="text" name="title_ru"></label>
+                  <label>Title(EN): <input class="mb-1" type="text" name="title_en"></label>
+                  <label>Description(RU): <input class="mb-1" type="text" name="description_ru"></label>
+                  <label>Description(EN): <input class="mb-1" type="text" name="description_en"></label>
+                  <label>Image URL(1): <input class="mb-1" type="text" name="image_1"></label>
+                  <label>Image URL(2): <input class="mb-1" type="text" name="image_2"></label>
+                  <label>Image URL(3): <input class="mb-1" type="text" name="image_3"></label>
+                </div>
+                <input type="submit" value="Update" class="btn text-light fw-bold w-75">
+              </form>
+            </div>
+            <div class="border p-1">
+              <h4 class="text-center fw-bold">Delete</h4>
+              <form class="d-flex flex-column align-items-center" method="POST" action="/admin/blog">
+                <input type="hidden" name="_method" value="DELETE">
+                <div class="d-flex flex-column align-items-end">
+                  <label>Id: <input class="mb-1" type="number" name="id" min="0" required></label>
+                </div>
+                <input type="submit" value="Delete" class="btn text-light fw-bold w-75">
+              </form>
+            </div>
+            <div class="border p-1">
+              <h4 class="text-center fw-bold">Restore</h4>
+              <form class="d-flex flex-column align-items-center" method="POST" action="/admin/blog">
+                <input type="hidden" name="_method" value="RESTORE">
+                <div class="d-flex flex-column align-items-end">
+                  <label>Id: <input class="mb-1" type="number" name="id" min="0" required></label>
+                </div>
+                <input type="submit" value="Restore" class="btn text-light fw-bold w-75">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <%- include('partials/footer') %>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

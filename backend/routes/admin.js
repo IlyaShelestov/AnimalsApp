@@ -1,5 +1,6 @@
 const express = require("express");
 const usersDB = require("../database/users.js");
+const blogDB = require("../database/blog.js");
 const weatherDB = require("../database/weather.js");
 const catsDB = require("../database/cats.js");
 const dogsDB = require("../database/dogs.js");
@@ -65,6 +66,66 @@ router.post("/", async (req, res) => {
   }
 
   res.redirect("/admin");
+});
+
+router.get("/blog", async (req, res) => {
+  const items = await blogDB.getAllConverted();
+
+  res.render("admin_blog", {
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
+    items,
+  });
+});
+
+router.post("/blog", async (req, res) => {
+  const {
+    _method,
+    id,
+    title_ru,
+    title_en,
+    description_ru,
+    description_en,
+    image_1,
+    image_2,
+    image_3,
+  } = req.body;
+
+  switch (_method) {
+    case "CREATE":
+      await blogDB.insert(
+        title_ru,
+        title_en,
+        description_ru,
+        description_en,
+        image_1,
+        image_2,
+        image_3
+      );
+      break;
+    case "UPDATE":
+      await blogDB.updateById(
+        id,
+        title_ru,
+        title_en,
+        description_ru,
+        description_en,
+        image_1,
+        image_2,
+        image_3
+      );
+      break;
+    case "DELETE":
+      await blogDB.deleteById(id);
+      break;
+    case "RESTORE":
+      await blogDB.restoreById(id);
+      break;
+    default:
+      break;
+  }
+
+  res.redirect("/admin/blog");
 });
 
 module.exports = router;
