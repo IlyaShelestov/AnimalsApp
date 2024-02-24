@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.get("/", (req, res) => {
   res.render("profile", {
-    isLoggedIn: req.cookies.isLoggedIn,
-    isAdmin: req.cookies.isAdmin,
-    username: req.cookies.username,
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
+    username: req.signedCookies.username,
     show: "",
   });
 });
@@ -18,22 +18,22 @@ router.post("/", async (req, res) => {
   let data;
   switch (_type) {
     case "weather":
-      data = await weatherDB.getAllConverted(req.cookies.username);
+      data = await weatherDB.getAllConverted(req.signedCookies.username);
       break;
     case "cats":
-      data = await catsDB.getAllConverted(req.cookies.username);
+      data = await catsDB.getAllConverted(req.signedCookies.username);
       break;
     case "dictionary":
-      data = await dictionaryDB.getAllConverted(req.cookies.username);
+      data = await dictionaryDB.getAllConverted(req.signedCookies.username);
       break;
     default:
       break;
   }
   
   res.render("profile", {
-    isLoggedIn: req.cookies.isLoggedIn,
-    isAdmin: req.cookies.isAdmin,
-    username: req.cookies.username,
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
+    username: req.signedCookies.username,
     show: _type,
     data,
   });

@@ -6,13 +6,13 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     let weatherData = await weatherAPIController.getWeatherData("Astana");
-    await weatherDB.insert(weatherData, "Astana", req.cookies.username);
+    await weatherDB.insert(weatherData, "Astana", req.signedCookies.username);
     weatherData = await weatherDB.getLast();
     res.render("weather", {
       weatherData,
       city: "Astana",
-      isLoggedIn: req.cookies.isLoggedIn,
-      isAdmin: req.cookies.isAdmin,
+      isLoggedIn: req.signedCookies.isLoggedIn,
+      isAdmin: req.signedCookies.isAdmin,
     });
   } catch (error) {
     console.error(error);
@@ -27,13 +27,13 @@ router.post("/", async (req, res) => {
     if (weatherData.code == "404") {
       res.redirect("/weather");
     } else {
-      await weatherDB.insert(weatherData, city, req.cookies.username);
+      await weatherDB.insert(weatherData, city, req.signedCookies.username);
       weatherData = await weatherDB.getLast();
       res.render("weather", {
         weatherData,
         city: city,
-        isLoggedIn: req.cookies.isLoggedIn,
-        isAdmin: req.cookies.isAdmin,
+        isLoggedIn: req.signedCookies.isLoggedIn,
+        isAdmin: req.signedCookies.isAdmin,
       });
     }
   } catch (error) {

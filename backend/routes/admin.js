@@ -8,8 +8,8 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const users = await usersDB.getAllConverted();
   res.render("admin", {
-    isLoggedIn: req.cookies.isLoggedIn,
-    isAdmin: req.cookies.isAdmin,
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
     users,
   });
 });
@@ -18,8 +18,8 @@ router.get("/weather", async (req, res) => {
   const weatherData = await weatherDB.getAllConverted();
 
   res.render("admin_weather", {
-    isLoggedIn: req.cookies.isLoggedIn,
-    isAdmin: req.cookies.isAdmin,
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
     weatherData,
   });
 });
@@ -28,8 +28,8 @@ router.get("/cats", async (req, res) => {
   const catsData = await catsDB.getAllConverted();
 
   res.render("admin_cats", {
-    isLoggedIn: req.cookies.isLoggedIn,
-    isAdmin: req.cookies.isAdmin,
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
     catsData,
   });
 });
@@ -38,8 +38,8 @@ router.get("/dictionary", async (req, res) => {
   const dictionaryData = await dictionaryDB.getAllConverted();
 
   res.render("admin_dictionary", {
-    isLoggedIn: req.cookies.isLoggedIn,
-    isAdmin: req.cookies.isAdmin,
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
     dictionaryData,
   });
 });

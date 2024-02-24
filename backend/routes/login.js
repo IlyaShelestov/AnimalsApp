@@ -6,8 +6,8 @@ router.get("/", (req, res) => {
   res.render("login", {
     deleted: false,
     wrong: false,
-    isLoggedIn: req.cookies.isLoggedIn,
-    isAdmin: req.cookies.isAdmin,
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
   });
 });
 
@@ -20,25 +20,25 @@ router.post("/", async (req, res) => {
       res.render("login", {
         deleted: true,
         wrong: false,
-        isLoggedIn: req.cookies.isLoggedIn,
-        isAdmin: req.cookies.isAdmin,
+        isLoggedIn: req.signedCookies.isLoggedIn,
+        isAdmin: req.signedCookies.isAdmin,
       });
       return;
     }
     const isAdmin = user.admin;
     const username = user.username;
-    res.cookie("isLoggedIn", true, { httpOnly: true });
-    res.cookie("username", username, { httpOnly: true });
+    res.cookie("isLoggedIn", true, { httpOnly: true, signed: true });
+    res.cookie("username", username, { httpOnly: true, signed: true });
     if (isAdmin) {
-      res.cookie("isAdmin", true, { httpOnly: true });
+      res.cookie("isAdmin", true, { httpOnly: true, signed: true });
     }
     res.redirect("/");
   } else {
     res.render("login", {
       deleted: false,
       wrong: true,
-      isLoggedIn: req.cookies.isLoggedIn,
-      isAdmin: req.cookies.isAdmin,
+      isLoggedIn: req.signedCookies.isLoggedIn,
+      isAdmin: req.signedCookies.isAdmin,
     });
   }
 });

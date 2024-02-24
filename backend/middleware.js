@@ -1,5 +1,5 @@
 function checkAuth(req, res, next) {
-  if (req.cookies.isLoggedIn) {
+  if (req.signedCookies.isLoggedIn) {
     next();
   } else {
     res.redirect("/login");
@@ -7,7 +7,7 @@ function checkAuth(req, res, next) {
 }
 
 function checkAdmin(req, res, next) {
-  if (req.cookies.isAdmin) {
+  if (req.signedCookies.isAdmin) {
     next();
   } else {
     res.status(403).send("Access denied. Admins only.");
@@ -15,7 +15,7 @@ function checkAdmin(req, res, next) {
 }
 
 function redirectIfLoggedIn(req, res, next) {
-  if (req.cookies.isLoggedIn) {
+  if (req.signedCookies.isLoggedIn) {
     res.redirect('/');
   } else {
     next();

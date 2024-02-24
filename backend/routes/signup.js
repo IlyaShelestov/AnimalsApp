@@ -5,8 +5,8 @@ const router = express.Router();
 router.get("/", (req, res) => {
   res.render("signup", {
     wrong: false,
-    isLoggedIn: req.cookies.isLoggedIn,
-    isAdmin: req.cookies.isAdmin,
+    isLoggedIn: req.signedCookies.isLoggedIn,
+    isAdmin: req.signedCookies.isAdmin,
   });
 });
 
@@ -16,8 +16,8 @@ router.post("/", async (req, res) => {
   if (user != false) {
     res.render("signup", {
       wrong: true,
-      isLoggedIn: req.cookies.isLoggedIn,
-      isAdmin: req.cookies.isAdmin,
+      isLoggedIn: req.signedCookies.isLoggedIn,
+      isAdmin: req.signedCookies.isAdmin,
     });
   } else {
     const password = req.body.password;

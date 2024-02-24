@@ -28,7 +28,7 @@ app.set("views", "frontend/views");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "..", "frontend", "css")));
 
-app.use(cookieParser());
+app.use(cookieParser("y2OUzEgkvXzO6M6GaNO404jKYbINZtLU"));
 
 app.use("/dictionary", middleware.checkAuth, dictionaryRoute);
 app.use("/weather", middleware.checkAuth, weatherRoute);

@@ -7,14 +7,14 @@ router.get("/", async (req, res) => {
   try {
     let fact = await catsAPIController.getFactData();
     let image = await catsAPIController.getImageData(false);
-    await catsDB.insert(image, fact, false, req.cookies.username);
+    await catsDB.insert(image, fact, false, req.signedCookies.username);
     let catsData = await catsDB.getLast();
     res.render("cats", {
       fact: catsData.fact,
       image: catsData.image_url,
       checked: "",
-      isLoggedIn: req.cookies.isLoggedIn,
-      isAdmin: req.cookies.isAdmin,
+      isLoggedIn: req.signedCookies.isLoggedIn,
+      isAdmin: req.signedCookies.isAdmin,
     });
   } catch (error) {
     console.error(error);
@@ -28,14 +28,14 @@ router.post("/", async (req, res) => {
     let image = "";
     if ("breed" in req.body) {
       image = await catsAPIController.getImageData(true);
-      await catsDB.insert(image, fact, true, req.cookies.username);
+      await catsDB.insert(image, fact, true, req.signedCookies.username);
       let catsData = await catsDB.getLast();
       res.render("cats", {
         fact: catsData.fact,
         image: catsData.image_url,
         checked: "checked",
-        isLoggedIn: req.cookies.isLoggedIn,
-        isAdmin: req.cookies.isAdmin,
+        isLoggedIn: req.signedCookies.isLoggedIn,
+        isAdmin: req.signedCookies.isAdmin,
       });
     } else {
       res.redirect("/cats");
