@@ -9,19 +9,16 @@
 
     <main>
       <div class="container">
-        <h1 class="text-center">All Dictionary Requests</h1>
+        <h1 class="text-center">All Dogs Requests</h1>
         <div>
-          <% dictionaryData.forEach(function(doc) { %>
+          <% dogsData.forEach(function(doc) { %>
             <div class="border bg-block rounded-4 border-2 blue-border p-1 my-1 row">
               <div class="col-12 d-flex justify-content-between">
                 <h6><span class="fw-bold">id: </span><%= doc.id %>,</h6>
                 <h6><span class="fw-bold">username: </span><%= doc.username %>,</h6>
-                <h6><span class="fw-bold">word: </span><%= doc.word %>,</h6>
-                <% if (doc.phonetic) { %><h6><span class="fw-bold">phonetic: </span><%= doc.phonetic %>,</h6> <% } %>
-                <h6><span class="fw-bold">part of Speech: </span><%= doc.partOfSpeech %>,</h6>
-                <h6><span class="fw-bold">created: </span><%= doc.creation_date %>,</h6>
+                <h6><span class="fw-bold">image_url: </span><%= doc.image_url %>,</h6>
+                <h6><span class="fw-bold">created: </span><%= doc.creation_date %>.</h6>
               </div>
-                <h6><span class="fw-bold">definition: </span><%= doc.definition %></h6>
             </div>
           <% }); %>
         </div>

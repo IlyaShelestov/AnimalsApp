@@ -2,7 +2,7 @@ const express = require("express");
 const usersDB = require("../database/users.js");
 const weatherDB = require("../database/weather.js");
 const catsDB = require("../database/cats.js");
-const dictionaryDB = require("../database/dictionary.js");
+const dogsDB = require("../database/dogs.js");
 const router = express.Router();
 
 router.get("/", async (req, res) => {
@@ -34,13 +34,13 @@ router.get("/cats", async (req, res) => {
   });
 });
 
-router.get("/dictionary", async (req, res) => {
-  const dictionaryData = await dictionaryDB.getAllConverted();
+router.get("/dogs", async (req, res) => {
+  const dogsData = await dogsDB.getAllConverted();
 
-  res.render("admin_dictionary", {
+  res.render("admin_dogs", {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
-    dictionaryData,
+    dogsData,
   });
 });
 

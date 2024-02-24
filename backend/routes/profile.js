@@ -1,7 +1,7 @@
 const express = require("express");
 const weatherDB = require("../database/weather.js");
 const catsDB = require("../database/cats.js");
-const dictionaryDB = require("../database/dictionary.js");
+const dogsDB = require("../database/dogs.js");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -23,8 +23,8 @@ router.post("/", async (req, res) => {
     case "cats":
       data = await catsDB.getAllConverted(req.signedCookies.username);
       break;
-    case "dictionary":
-      data = await dictionaryDB.getAllConverted(req.signedCookies.username);
+    case "dogs":
+      data = await dogsDB.getAllConverted(req.signedCookies.username);
       break;
     default:
       break;

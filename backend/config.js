@@ -18,8 +18,8 @@ const config = {
     imagesUrl: "https://api.thecatapi.com/v1/images/search",
     factsUrl: "https://meowfacts.herokuapp.com/",
   },
-  dictionary: {
-    apiUrl: "https://api.dictionaryapi.dev/api/v2/entries/en/",
+  dogs: {
+    apiUrl: "https://random.dog/woof.json",
   },
 };
 

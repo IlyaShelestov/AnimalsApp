@@ -7,10 +7,11 @@ const db = require("./database/connection.js");
 const middleware = require("./middleware.js");
 
 const homeRoute = require("./routes/home.js");
+const blogRoute = require("./routes/blog.js");
 const profileRoute = require("./routes/profile.js");
 const weatherRoute = require("./routes/weather.js");
 const catsRoute = require("./routes/cats.js");
-const dictionaryRoute = require("./routes/dictionary.js");
+const dogsRoute = require("./routes/dogs.js");
 const loginRoute = require("./routes/login.js");
 const signupRoute = require("./routes/signup.js");
 const logoutRoute = require("./routes/logout.js");
@@ -30,7 +31,8 @@ app.use(express.static(path.join(__dirname, "..", "frontend", "css")));
 
 app.use(cookieParser("y2OUzEgkvXzO6M6GaNO404jKYbINZtLU"));
 
-app.use("/dictionary", middleware.checkAuth, dictionaryRoute);
+app.use("/blog", middleware.checkAuth, blogRoute);
+app.use("/dogs", middleware.checkAuth, dogsRoute);
 app.use("/weather", middleware.checkAuth, weatherRoute);
 app.use("/cats", middleware.checkAuth, catsRoute);
 app.use("/profile", middleware.checkAuth, profileRoute);
