@@ -16,7 +16,7 @@ function checkAdmin(req, res, next) {
 
 function redirectIfLoggedIn(req, res, next) {
   if (req.signedCookies.isLoggedIn) {
-    res.redirect('/');
+    res.redirect("/");
   } else {
     next();
   }

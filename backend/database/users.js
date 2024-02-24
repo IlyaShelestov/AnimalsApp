@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 const { formatDate } = require("../helpers");
+
+const saltRounds = 10;
 
 const userSchema = new mongoose.Schema(
   {
@@ -26,10 +29,12 @@ async function insert(username, password, admin) {
       maxId = -1;
     }
 
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     const newUser = new User({
       id: maxId + 1,
       username: username,
-      password: password,
+      password: hashedPassword,
       admin: admin,
     });
 
@@ -42,12 +47,13 @@ async function insert(username, password, admin) {
 async function exists(username, password) {
   try {
     if (password) {
-      const doesExist = await User.exists({
-        username: username,
-        password: password,
-      });
-      if (doesExist) {
-        return User.findOne({ username: username });
+      const user = await User.findOne({ username: username });
+      let passwordIsCorrect = false;
+      if (user) {
+        passwordIsCorrect = await bcrypt.compare(password, user.password);
+      }
+      if (passwordIsCorrect) {
+        return user;
       } else {
         return false;
       }
@@ -95,7 +101,7 @@ async function updateById(id, username, password, admin) {
   try {
     const updateData = {};
     if (username) updateData.username = username;
-    if (password) updateData.password = password;
+    if (password) updateData.password = await bcrypt.hash(password, saltRounds);
     if (admin !== undefined) updateData.admin = admin;
     updateData.update_date = new Date();
 

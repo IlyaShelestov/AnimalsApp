@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
     default:
       break;
   }
-  
+
   res.render("profile", {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
