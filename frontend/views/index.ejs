@@ -1,45 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <%- include('partials/head') %>
 
   <body class="mb-5 pb-3">
+
     <%- include('partials/header') %>
 
     <main>
       <div class="container">
         <div class="text-center">
-          <h1 class="display-3 fw-bold mb-1">Home Page</h1>
+          <% if (language == "ru") { %>
+            <h1 class="display-3 fw-bold mb-1">Главная страница</h1>
           <p>
-            This project serves as the third assignment for the
+            Этот проект является четвёртым заданием курса
+            <strong>WEB Technologies 2</strong> в
+            <strong>Astana IT University</strong>.
+          </p>
+          <p>
+            Этот веб-проект разработан с использованием <strong>Bootstrap</strong> для
+            адаптивного и удобного пользовательского интерфейса. Он включает в себя <strong>семь</strong>
+            основных разделов: страница <strong>"Главная"</strong>, предоставляющая обзор проекта; страница
+            <strong>"Блог"</strong>, на которой представлены материалы с конкретной информацией (посты), каждый из которых включает
+            карусель с 3 изображениями; страница <strong>"Коты"</strong>, на которой представлены два API для генерации
+            случайных фотографий котов и фактов о котах; страница <strong>"Погода"</strong>, где пользователи могут получить
+            информацию о погоде для любого города с использованием OpenWeatherAPI; страница <strong>"Собаки"</strong> для генерации
+            случайных фотографий собак; страница <strong>"Профиль"</strong>, которая отображает историю поиска пользователя
+            по всем API. Данные страницы доступны после успешного <strong>входа</strong> или <strong>регистрации</strong>.
+            Дополнительная вкладка <strong>"Админ"</strong> доступная для
+            пользователей, вошедших в систему как администраторы, предлагает информацию обо всех <em>пользователях</em>,
+            а также такие действия, как <em>Удалить</em>, <em>Восстановить</em>, <em>Обновить</em>, <em>Вставить</em>, и истории <em>поисков всех
+            пользователей</em> по API. Кроме того, вкладка <strong>"Админ"</strong> позволяет управлять страницей <strong>"Блог"</strong>,
+            включая действия такие как <em>Удалить</em>, <em>Восстановить</em>, <em>Обновить</em>, <em>Вставить</em>, и отображение списка всех постов.
+          </p>
+          <p>
+            Приложение использует четыре API: <strong>OpenWeatherMap</strong> для данных о погоде,
+            <strong>TheCatAPI</strong> для случайных фотографий котов, <strong>meowfacts</strong> для интересных фактах о котах,
+            и <strong>RandomDog</strong> для получения случайных фотографий собак. Эти API интегрированы для улучшения
+            пользовательского опыта за счет предоставления динамического контента.
+          </p>
+          <p>
+            Бэкенд построен на <strong>Express</strong>, и для шаблонизации используется <strong>EJS</strong>,
+            обеспечивая эффективную серверную отрисовку и бесперебойное взаимодействие с пользователями. <strong>Mongoose</strong>
+            интегрирован для упрощения управления данными с <strong>MongoDB</strong>, упрощая разработку API и процессы сохранения данных.
+            Для управления сессиями пользователей используется <strong>Cookie-Parser</strong>, что необходимо для эффективного управления
+            cookies и поддержания информации о залогиненных пользователях. Более того, для защиты паролей пользователей используется <strong>Bcrypt</strong>.
+          </p>
+          <p>
+            Проект также поддерживает два языка: <em>Русский</em> и
+            <em>Английский</em>. Переведены почти все вкладки кроме "Админ" и "Погода".
+          </p>
+          <h4 class="fw-normal">
+            Чтобы увидеть проект, перейдите во вкладку <em>"Вход"</em>, или посетите
+            <strong>localhost:3000/login</strong> /
+            <strong>localhost:3000/signup</strong>.
+          </h4>
+          <p class="fs-6">
+            Данные: 1) для админа: Имя пользователя: ilya, Пароль: admin; 2) для обычного пользователя: Имя пользователя: mike, Пароль: 123321;
+          </p>
+          <% } else { %>
+            <h1 class="display-3 fw-bold mb-1">Home Page</h1>
+          <p>
+            This project serves as the fourth assignment for the
             <strong>WEB Technologies 2</strong> course at
             <strong>Astana IT University</strong>.
           </p>
           <p>
             This web project is designed using <strong>Bootstrap</strong> for a
             responsive and user-friendly layout. It comprises
-            <strong>six</strong> main sections: the <strong>"Home"</strong> page
-            providing an overview of the project; the
+            <strong>seven</strong> main sections: the
+            <strong>"Home"</strong> page providing an overview of the project;
+            the <strong>"Blog"</strong> page featuring items with specific
+            information (posts), including a carousel with 3 images; the
             <strong>"Cats"</strong> page featuring two APIs for generating
             random cat photos and facts; the <strong>"Weather"</strong> page
             where users can retrieve weather information for any city using the
-            OpenWeatherAPI; the <strong>"Dictionary"</strong> page for looking
-            up word definitions; and the <strong>"Profile"</strong> page, which
+            OpenWeatherAPI; the <strong>"Dogs"</strong> page for generating
+            random dog photos; the <strong>"Profile"</strong> page, which
             displays the user's search history across all APIs. Additionally,
             after successful <strong>login</strong> or <strong>sign-up</strong>,
             users gain access to these functionalities, with an extra
             <strong>"Admin"</strong> tab available to users logged in as admins,
-            offering insights into all users' account information, actions like
+            offering insights into all <em>users' account information</em>,
+            actions like <em>Delete</em>, <em>Restore</em>, <em>Update</em>,
+            <em>Insert</em>, and histories of
+            <em>all users' searches</em> across the APIs. Additionally, the
+            <strong>"Admin"</strong> tab allows for the management of the
+            <strong>"Blog"</strong> page, encompassing actions such as
             <em>Delete</em>, <em>Restore</em>, <em>Update</em>, <em>Insert</em>,
-            and histories of all users' searches across the APIs.
+            and displaying a list of all items.
           </p>
           <p>
             The application utilizes four APIs:
             <strong>OpenWeatherMap</strong> for weather data,
             <strong>TheCatAPI</strong> for random cat photos,
             <strong>meowfacts</strong> for interesting cat facts, and
-            <strong>Free Dictionary API</strong> for retrieving word
-            definitions. These APIs are integrated to enhance the user
-            experience by providing dynamic content.
+            <strong>RandomDog</strong> for retrieving random dog photos. These
+            APIs are integrated to enhance the user experience by providing
+            dynamic content.
           </p>
           <p>
             The backend is built with <strong>Express</strong>, and
@@ -50,13 +108,24 @@
             saving processes. For user session management,
             <strong>Cookie-Parser</strong> is employed to handle cookies
             efficiently, essential for maintaining logged-in user information.
+            Moreover, <strong>Bcrypt</strong>
+            is utilized to safeguard users' passwords.
+          </p>
+          <p>
+            The project also supports two languages: <em>Russian</em> and
+            <em>English</em>. Almost all pages except "Admin" and "Weather" are
+            translated.
           </p>
           <h4 class="fw-normal">
             To view the project, navigate to the <em>"Login"</em> tab, or visit
             <strong>localhost:3000/login</strong> /
             <strong>localhost:3000/signup</strong>.
           </h4>
-          <p class="fs-6">Credentials: 1) for admin: Username: ilya, Password: admin; 2) for regular user: Username: mike, Password: 123321;</p>
+          <p class="fs-6">
+            Credentials: 1) for admin: Username: ilya, Password: admin; 2) for
+            regular user: Username: mike, Password: 123321;
+          </p>
+          <% } %>
         </div>
       </div>
     </main>
