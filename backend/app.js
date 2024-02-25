@@ -7,6 +7,7 @@ const db = require("./database/connection.js");
 const middleware = require("./middleware.js");
 
 const homeRoute = require("./routes/home.js");
+const languageRoute = require("./routes/language.js");
 const blogRoute = require("./routes/blog.js");
 const profileRoute = require("./routes/profile.js");
 const weatherRoute = require("./routes/weather.js");
@@ -27,7 +28,7 @@ app.set("view engine", "ejs");
 app.set("views", "frontend/views");
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "..", "frontend", "css")));
+app.use(express.static(path.join(__dirname, "..", "frontend", "public")));
 
 app.use(cookieParser("y2OUzEgkvXzO6M6GaNO404jKYbINZtLU"));
 
@@ -40,6 +41,7 @@ app.use("/admin", middleware.checkAuth, middleware.checkAdmin, adminRoute);
 app.use("/login", middleware.redirectIfLoggedIn, loginRoute);
 app.use("/signup", middleware.redirectIfLoggedIn, signupRoute);
 app.use("/logout", middleware.checkAuth, logoutRoute);
+app.use("/language", languageRoute);
 app.use("/", homeRoute, pageNotFoundRoute);
 
 app.listen(port, () => {

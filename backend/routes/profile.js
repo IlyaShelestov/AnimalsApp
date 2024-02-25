@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
     username: req.signedCookies.username,
+    language: req.signedCookies.language,
     show: "",
   });
 });
@@ -34,6 +35,7 @@ router.post("/", async (req, res) => {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
     username: req.signedCookies.username,
+    language: req.signedCookies.language,
     show: _type,
     data,
   });

@@ -12,6 +12,7 @@ router.get("/", async (req, res) => {
       image: dogData.image_url,
       isLoggedIn: req.signedCookies.isLoggedIn,
       isAdmin: req.signedCookies.isAdmin,
+      language: req.signedCookies.language,
     });
   } catch (error) {
     console.error(error);

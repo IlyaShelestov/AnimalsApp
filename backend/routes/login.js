@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
     wrong: false,
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
+    language: req.signedCookies.language,
   });
 });
 
@@ -22,6 +23,7 @@ router.post("/", async (req, res) => {
         wrong: false,
         isLoggedIn: req.signedCookies.isLoggedIn,
         isAdmin: req.signedCookies.isAdmin,
+        language: req.signedCookies.language,
       });
       return;
     }
@@ -39,6 +41,7 @@ router.post("/", async (req, res) => {
       wrong: true,
       isLoggedIn: req.signedCookies.isLoggedIn,
       isAdmin: req.signedCookies.isAdmin,
+      language: req.signedCookies.language,
     });
   }
 });

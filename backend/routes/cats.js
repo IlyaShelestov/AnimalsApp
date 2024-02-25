@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
       checked: "",
       isLoggedIn: req.signedCookies.isLoggedIn,
       isAdmin: req.signedCookies.isAdmin,
+      language: req.signedCookies.language,
     });
   } catch (error) {
     console.error(error);
@@ -36,6 +37,7 @@ router.post("/", async (req, res) => {
         checked: "checked",
         isLoggedIn: req.signedCookies.isLoggedIn,
         isAdmin: req.signedCookies.isAdmin,
+        language: req.signedCookies.language,
       });
     } else {
       res.redirect("/cats");

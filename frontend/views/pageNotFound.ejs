@@ -10,8 +10,13 @@
     <main>
       <div class="container">
         <div class="text-center">
-          <h1 class="mb-3">Ooops!</h1>
-          <h2><span class="fw-bold">404!</span> Page not found!</h2>
+          <% if (language == "ru") { %>
+            <h1 class="mb-3">Ой!</h1>
+            <h2><span class="fw-bold">404!</span> Страница не найдена!</h2>
+          <% } else { %>
+            <h1 class="mb-3">Ooops!</h1>
+            <h2><span class="fw-bold">404!</span> Page not found!</h2>
+          <% } %>
         </div>
       </div>
     </main>

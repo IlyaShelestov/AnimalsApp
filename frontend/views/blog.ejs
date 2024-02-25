@@ -7,7 +7,11 @@
 
     <main>
       <div class="container">
-        <h1 class="display-3 fw-bold mb-1 text-center">Blog</h1>
+        <% if (language == "ru") { %>
+          <h1 class="display-3 fw-bold mb-1 text-center">Блог</h1>
+        <% } else { %>
+          <h1 class="display-3 fw-bold mb-1 text-center">Blog</h1>
+        <% } %>
         <div class="d-flex flex-wrap justify-content-around align-items-center gap-4">
           <% items.forEach(function(item) { %>
             <% if (!item.deletion_date) { %>
@@ -35,10 +39,17 @@
                   </button>
                 </div>
               </div>
-              <div class="card-body overflow-auto">
-                <h5 class="card-title text-center"><%= item.title_en %></h5>
-                <p class="card-text"><%= item.description_en %></p>
-              </div>
+              <% if (language == "ru") { %>
+                <div class="card-body overflow-auto">
+                  <h5 class="card-title text-center"><%= item.title_ru %></h5>
+                  <p class="card-text"><%= item.description_ru %></p>
+                </div>
+              <% } else { %>
+                <div class="card-body overflow-auto">
+                  <h5 class="card-title text-center"><%= item.title_en %></h5>
+                  <p class="card-text"><%= item.description_en %></p>
+                </div>
+              <% } %>
             </div>
             <% } %>
           <% }) %>

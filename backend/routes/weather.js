@@ -13,6 +13,7 @@ router.get("/", async (req, res) => {
       city: "Astana",
       isLoggedIn: req.signedCookies.isLoggedIn,
       isAdmin: req.signedCookies.isAdmin,
+      language: req.signedCookies.language,
     });
   } catch (error) {
     console.error(error);
@@ -34,6 +35,7 @@ router.post("/", async (req, res) => {
         city: city,
         isLoggedIn: req.signedCookies.isLoggedIn,
         isAdmin: req.signedCookies.isAdmin,
+        language: req.signedCookies.language,
       });
     }
   } catch (error) {

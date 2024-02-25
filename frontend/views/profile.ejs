@@ -9,26 +9,51 @@
 
     <main>
       <div class="container">
-        <div class="border d-flex justify-content-around align-items-center mt-3">
-          <h1><span class="fw-bold">Username: </span><%= username %></h1>
-          <a href="/logout"><button class="btn text-light fw-bold">Log out</button></a>
-        </div>
-        <div class="d-flex justify-content-between mt-3">
-          <form action="/profile" method="POST">
-            <input type="hidden" name="_type" value="weather">
-            <input class="btn text-light fw-bold" type ="submit" value="View your Weather history">
-          </form>
-          <form action="/profile" method="POST">
-            <input type="hidden" name="_type" value="cats">
-            <input class="btn text-light fw-bold" type ="submit" value="View your Cats history">
-          </form>
-          <form action="/profile" method="POST">
-            <input type="hidden" name="_type" value="dogs">
-            <input class="btn text-light fw-bold" type ="submit" value="View your Dogs history">
-          </form>
-        </div>
+        <% if (language == "ru") { %>
+          <div class="border d-flex justify-content-around align-items-center mt-3">
+            <h1><span class="fw-bold">Имя ползователя: </span><%= username %></h1>
+            <a href="/logout"><button class="btn text-light fw-bold">Выйти</button></a>
+          </div>
+          <div class="d-flex justify-content-between mt-3">
+            <form action="/profile" method="POST">
+              <input type="hidden" name="_type" value="weather">
+              <input class="btn text-light fw-bold" type ="submit" value="История Погоды">
+            </form>
+            <form action="/profile" method="POST">
+              <input type="hidden" name="_type" value="cats">
+              <input class="btn text-light fw-bold" type ="submit" value="История Котов">
+            </form>
+            <form action="/profile" method="POST">
+              <input type="hidden" name="_type" value="dogs">
+              <input class="btn text-light fw-bold" type ="submit" value="История Собак">
+            </form>
+          </div>
+        <% } else { %>
+          <div class="border d-flex justify-content-around align-items-center mt-3">
+            <h1><span class="fw-bold">Username: </span><%= username %></h1>
+            <a href="/logout"><button class="btn text-light fw-bold">Log out</button></a>
+          </div>
+          <div class="d-flex justify-content-between mt-3">
+            <form action="/profile" method="POST">
+              <input type="hidden" name="_type" value="weather">
+              <input class="btn text-light fw-bold" type ="submit" value="View your Weather history">
+            </form>
+            <form action="/profile" method="POST">
+              <input type="hidden" name="_type" value="cats">
+              <input class="btn text-light fw-bold" type ="submit" value="View your Cats history">
+            </form>
+            <form action="/profile" method="POST">
+              <input type="hidden" name="_type" value="dogs">
+              <input class="btn text-light fw-bold" type ="submit" value="View your Dogs history">
+            </form>
+          </div>
+        <% } %>
         <% if (show == "weather") { %>
-            <h2 class="text-center mt-3">Weather History</h2>
+            <% if (language == "ru") { %>
+              <h2 class="text-center mt-3">История "Погода"</h2>
+            <% } else { %>
+              <h2 class="text-center mt-3">Weather History</h2>
+            <% } %>
             <div>
               <% data.forEach(function(doc) { %>
                 <div class="border bg-block rounded-4 border-2 blue-border p-1 my-1 row">
@@ -53,7 +78,11 @@
               <% }); %>
             </div>
         <% } else if (show == "cats") { %>
-          <h2 class="text-center mt-3">Cats History</h2>
+          <% if (language == "ru") { %>
+            <h2 class="text-center mt-3">История "Коты"</h2>
+          <% } else { %>
+            <h2 class="text-center mt-3">Cats History</h2>
+          <% } %>
           <div>
             <% data.forEach(function(doc) { %>
               <div class="border bg-block rounded-4 border-2 blue-border p-1 my-1 row">
@@ -67,7 +96,11 @@
             <% }); %>
           </div>
         <% } else if (show == "dogs") { %>
-          <h2 class="text-center mt-3">Dogs History</h2>
+          <% if (language == "ru") { %>
+            <h2 class="text-center mt-3">История "Собаки"</h2>
+          <% } else { %>
+            <h2 class="text-center mt-3">Dogs History</h2>
+          <% } %>
           <div>
             <% data.forEach(function(doc) { %>
               <div class="border bg-block rounded-4 border-2 blue-border p-1 my-1 row">
@@ -79,7 +112,11 @@
             <% }); %>
           </div>
         <% } else { %>
-          <h2 class="text-center mt-3">Press one of the buttons to display the history...</h2>
+          <% if (language == "ru") { %>
+            <h2 class="text-center mt-3">Нажмите на одну из кнопок для отображения истории...</h2>
+          <% } else { %>
+            <h2 class="text-center mt-3">Press one of the buttons to display the history...</h2>
+          <% } %>
         <% } %>
       </div>
     </main>

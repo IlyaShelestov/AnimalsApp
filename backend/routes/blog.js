@@ -8,6 +8,7 @@ router.get("/", async (req, res) => {
   res.render("blog", {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
+    language: req.signedCookies.language,
     items,
   });
 });

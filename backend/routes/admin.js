@@ -11,6 +11,7 @@ router.get("/", async (req, res) => {
   res.render("admin", {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
+    language: req.signedCookies.language,
     users,
   });
 });
@@ -21,6 +22,7 @@ router.get("/weather", async (req, res) => {
   res.render("admin_weather", {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
+    language: req.signedCookies.language,
     weatherData,
   });
 });
@@ -31,6 +33,7 @@ router.get("/cats", async (req, res) => {
   res.render("admin_cats", {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
+    language: req.signedCookies.language,
     catsData,
   });
 });
@@ -41,6 +44,7 @@ router.get("/dogs", async (req, res) => {
   res.render("admin_dogs", {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
+    language: req.signedCookies.language,
     dogsData,
   });
 });
@@ -74,6 +78,7 @@ router.get("/blog", async (req, res) => {
   res.render("admin_blog", {
     isLoggedIn: req.signedCookies.isLoggedIn,
     isAdmin: req.signedCookies.isAdmin,
+    language: req.signedCookies.language,
     items,
   });
 });

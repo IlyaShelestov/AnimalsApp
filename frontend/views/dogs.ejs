@@ -9,18 +9,31 @@
 
     <main class="mb-4 mb-lg-1 mb-md-1 mb-sm-1">
       <div class="container">
-        <h1 class="text-center mt-2">Random Dog Photos Generator</h1>
+        <% if (language == "ru") { %>
+          <h1 class="text-center mt-2">Генератор Случайных Фотографий Собак</h1>
+        <% } else { %>
+          <h1 class="text-center mt-2">Random Dog Photos Generator</h1>
+        <% } %>
         <form
           class="d-flex flex-column align-items-center"
           method="POST"
           action="/dogs"
         >
-        <input
-        class="mt-2 border blue-border rounded-pill border-2 text-light fw-bold"
-        type="submit"
-        id="input-submit"
-        value="Generate"
-      />
+        <% if (language == "ru") { %>
+          <input
+          class="mt-2 border blue-border rounded-pill border-2 text-light fw-bold"
+          type="submit"
+          id="input-submit"
+          value="Найти"
+        />
+        <% } else { %>
+          <input
+          class="mt-2 border blue-border rounded-pill border-2 text-light fw-bold"
+          type="submit"
+          id="input-submit"
+          value="Generate"
+        />
+        <% } %>
         </form>
         <div
           class="block-large border-2 blue-border rounded-2 border d-flex justify-content-between align-items-center flex-column mt-3 p-4"
