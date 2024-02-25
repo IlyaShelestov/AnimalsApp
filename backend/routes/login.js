@@ -32,7 +32,7 @@ router.post("/", async (req, res) => {
     if (isAdmin) {
       res.cookie("isAdmin", true, { httpOnly: true, signed: true });
     }
-    res.redirect("/");
+    res.redirect("/blog");
   } else {
     res.render("login", {
       deleted: false,
